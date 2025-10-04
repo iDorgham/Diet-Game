@@ -1,0 +1,36 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="200" rx="20" fill="#EDF0F2"/>
+  
+  <!-- Plate -->
+  <ellipse cx="100" cy="120" rx="80" ry="40" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="2"/>
+  
+  <!-- Main dish (chicken) -->
+  <ellipse cx="100" cy="100" rx="40" ry="25" fill="#F59E0B" stroke="#D97706" stroke-width="2"/>
+  
+  <!-- Chicken details -->
+  <path d="M80 90C80 90 85 85 90 90C95 95 100 90 105 90C110 95 115 90 120 90" stroke="#D97706" stroke-width="2" fill="none"/>
+  <path d="M85 95C85 95 90 90 95 95C100 100 105 95 110 95C115 100 115 95 115 95" stroke="#D97706" stroke-width="2" fill="none"/>
+  
+  <!-- Vegetables -->
+  <circle cx="70" cy="110" r="8" fill="#22C55E"/>
+  <circle cx="90" cy="115" r="6" fill="#22C55E"/>
+  <circle cx="110" cy="115" r="6" fill="#22C55E"/>
+  <circle cx="130" cy="110" r="8" fill="#22C55E"/>
+  
+  <!-- Potatoes -->
+  <ellipse cx="75" cy="105" rx="6" ry="4" fill="#FCD34D"/>
+  <ellipse cx="125" cy="105" rx="6" ry="4" fill="#FCD34D"/>
+  
+  <!-- Fork -->
+  <rect x="40" y="60" width="4" height="40" fill="#6B7280" rx="2"/>
+  <rect x="38" y="60" width="8" height="6" fill="#6B7280" rx="1"/>
+  
+  <!-- Knife -->
+  <rect x="150" y="60" width="4" height="40" fill="#6B7280" rx="2"/>
+  <path d="M150 60L160 70L155 75L145 65Z" fill="#9CA3AF"/>
+  
+  <!-- Wine glass -->
+  <path d="M160 100C160 100 160 80 165 80C170 80 170 100 170 100L170 110C170 110 165 110 160 110Z" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="2"/>
+  <rect x="162" y="82" width="6" height="18" fill="#FEF2F2" rx="1"/>
+</svg>

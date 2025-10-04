@@ -1,0 +1,36 @@
+# Development Rules
+
+## Code Quality Standards
+- Follow TypeScript best practices and strict typing
+- Use meaningful variable and function names
+- Write comprehensive JSDoc comments for all public APIs
+- Maintain consistent code formatting with Prettier
+- Ensure all functions have proper error handling
+
+## Testing Requirements
+- Write unit tests for all business logic
+- Maintain minimum 80% code coverage
+- Use descriptive test names that explain the scenario
+- Mock external dependencies appropriately
+- Test both success and failure cases
+
+## Git Workflow
+- Use conventional commit messages
+- Create feature branches for new development
+- Require code review for all pull requests
+- Keep commits atomic and focused
+- Update documentation with code changes
+
+## Architecture Principles
+- Follow SOLID principles
+- Use dependency injection where appropriate
+- Implement proper separation of concerns
+- Design for testability and maintainability
+- Document architectural decisions
+
+## Security Guidelines
+- Validate all user inputs
+- Use environment variables for sensitive data
+- Implement proper authentication and authorization
+- Follow OWASP security best practices
+- Regular security audits and dependency updates

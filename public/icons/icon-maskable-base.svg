@@ -1,0 +1,29 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background - Full square for maskable -->
+  <rect width="512" height="512" fill="#085492"/>
+  
+  <!-- Safe area circle -->
+  <circle cx="256" cy="256" r="200" fill="#085492"/>
+  
+  <!-- Apple Icon -->
+  <path d="M256 140C256 140 200 180 200 240C200 280 220 320 256 320C292 320 312 280 312 240C312 180 256 140 256 140Z" fill="#71E6DE"/>
+  
+  <!-- Apple Stem -->
+  <rect x="248" y="120" width="16" height="24" fill="#998B73" rx="8"/>
+  
+  <!-- Leaf -->
+  <path d="M264 120C264 120 280 100 300 120C280 140 264 120 264 120Z" fill="#71E6DE"/>
+  
+  <!-- Plus Sign for Health/Nutrition -->
+  <rect x="220" y="340" width="72" height="16" fill="#71E6DE" rx="8"/>
+  <rect x="248" y="308" width="16" height="72" fill="#71E6DE" rx="8"/>
+  
+  <!-- XP/Level Indicator -->
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#71E6DE" stroke-width="6" stroke-dasharray="16 8" opacity="0.6"/>
+  
+  <!-- Small decorative elements -->
+  <circle cx="180" cy="180" r="10" fill="#71E6DE" opacity="0.8"/>
+  <circle cx="332" cy="180" r="10" fill="#71E6DE" opacity="0.8"/>
+  <circle cx="180" cy="332" r="10" fill="#71E6DE" opacity="0.8"/>
+  <circle cx="332" cy="332" r="10" fill="#71E6DE" opacity="0.8"/>
+</svg>

@@ -1,0 +1,36 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="200" rx="20" fill="#EDF0F2"/>
+  
+  <!-- Plate -->
+  <ellipse cx="100" cy="120" rx="80" ry="40" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="2"/>
+  
+  <!-- Salad bowl -->
+  <path d="M60 100C60 100 60 80 100 80C140 80 140 100 140 100L140 110C140 110 140 120 100 120C60 120 60 110 60 100Z" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="2"/>
+  
+  <!-- Lettuce -->
+  <path d="M70 90C70 90 80 85 90 90C100 95 110 90 120 90C130 95 130 90 130 90" stroke="#22C55E" stroke-width="4" fill="none"/>
+  <path d="M75 95C75 95 85 90 95 95C105 100 115 95 125 95" stroke="#22C55E" stroke-width="4" fill="none"/>
+  <path d="M80 100C80 100 90 95 100 100C110 105 120 100 120 100" stroke="#22C55E" stroke-width="4" fill="none"/>
+  
+  <!-- Tomatoes -->
+  <circle cx="80" cy="95" r="6" fill="#EF4444"/>
+  <circle cx="100" cy="90" r="5" fill="#EF4444"/>
+  <circle cx="120" cy="95" r="6" fill="#EF4444"/>
+  
+  <!-- Cucumber -->
+  <ellipse cx="90" cy="105" rx="8" ry="3" fill="#16A34A"/>
+  <ellipse cx="110" cy="105" rx="8" ry="3" fill="#16A34A"/>
+  
+  <!-- Carrots -->
+  <ellipse cx="75" cy="105" rx="3" ry="8" fill="#EA580C"/>
+  <ellipse cx="125" cy="105" rx="3" ry="8" fill="#EA580C"/>
+  
+  <!-- Fork -->
+  <rect x="40" y="60" width="4" height="40" fill="#6B7280" rx="2"/>
+  <rect x="38" y="60" width="8" height="6" fill="#6B7280" rx="1"/>
+  
+  <!-- Water glass -->
+  <rect x="150" y="80" width="15" height="30" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="2" rx="2"/>
+  <rect x="152" y="82" width="11" height="26" fill="#DBEAFE" rx="1"/>
+</svg>

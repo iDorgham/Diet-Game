@@ -1,0 +1,7 @@
+# Placeholder for analytics-shortcut.png
+# Size: 96x96
+# Color: #71E6DE
+# 
+# This is a placeholder file. In production, replace with actual PNG icon.
+# You can use the SVG files in this directory with an online converter
+# or the generate-icons.html tool in a web browser.

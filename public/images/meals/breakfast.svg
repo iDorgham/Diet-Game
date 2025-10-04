@@ -1,0 +1,32 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="200" rx="20" fill="#EDF0F2"/>
+  
+  <!-- Plate -->
+  <ellipse cx="100" cy="120" rx="80" ry="40" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="2"/>
+  
+  <!-- Pancakes -->
+  <ellipse cx="100" cy="100" rx="60" ry="8" fill="#D97706"/>
+  <ellipse cx="100" cy="90" rx="55" ry="8" fill="#F59E0B"/>
+  <ellipse cx="100" cy="80" rx="50" ry="8" fill="#FCD34D"/>
+  
+  <!-- Syrup -->
+  <path d="M70 80C70 80 85 75 100 80C115 85 130 80 130 80" stroke="#92400E" stroke-width="3" fill="none"/>
+  
+  <!-- Butter -->
+  <rect x="90" y="75" width="20" height="8" fill="#FEF3C7" rx="2"/>
+  
+  <!-- Fork -->
+  <rect x="40" y="60" width="4" height="40" fill="#6B7280" rx="2"/>
+  <rect x="38" y="60" width="8" height="6" fill="#6B7280" rx="1"/>
+  
+  <!-- Coffee cup -->
+  <rect x="150" y="80" width="20" height="30" fill="#92400E" rx="2"/>
+  <rect x="148" y="78" width="24" height="4" fill="#6B7280" rx="2"/>
+  <path d="M170 85C170 85 175 85 175 90" stroke="#6B7280" stroke-width="2" fill="none"/>
+  
+  <!-- Steam -->
+  <path d="M155 70C155 70 157 65 155 60" stroke="#9CA3AF" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M160 70C160 70 162 65 160 60" stroke="#9CA3AF" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M165 70C165 70 167 65 165 60" stroke="#9CA3AF" stroke-width="2" fill="none" opacity="0.6"/>
+</svg>

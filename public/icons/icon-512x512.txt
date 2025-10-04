@@ -1,0 +1,7 @@
+# Placeholder for icon-512x512.png
+# Size: 512x512
+# Color: #085492
+# 
+# This is a placeholder file. In production, replace with actual PNG icon.
+# You can use the SVG files in this directory with an online converter
+# or the generate-icons.html tool in a web browser.

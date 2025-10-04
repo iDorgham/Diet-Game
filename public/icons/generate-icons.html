@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Generator - NutriQuest</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .icon-preview {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .icon-preview img {
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .size-label {
+            font-weight: bold;
+            color: #085492;
+        }
+        .download-btn {
+            background: #085492;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .download-btn:hover {
+            background: #71E6DE;
+            color: #085492;
+        }
+        .instructions {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎮 NutriQuest Icon Generator</h1>
+    
+    <div class="instructions">
+        <h3>Instructions:</h3>
+        <p>1. Click "Download All Icons" to automatically download all PNG files</p>
+        <p>2. Or right-click on individual icons and select "Save image as..."</p>
+        <p>3. Place the PNG files in the <code>public/icons/</code> directory</p>
+        <p>4. The icons will automatically be used by the PWA manifest</p>
+        <button class="download-btn" onclick="downloadAllIcons()" style="background: #22C55E; font-size: 16px; padding: 12px 24px; margin-top: 10px;">🚀 Download All Icons (13 files)</button>
+    </div>
+
+    <h2>Standard Icons</h2>
+    <div id="standard-icons"></div>
+
+    <h2>Maskable Icons</h2>
+    <div id="maskable-icons"></div>
+
+    <h2>Shortcut Icons</h2>
+    <div id="shortcut-icons"></div>
+
+    <script>
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        
+        // Standard icons
+        const standardContainer = document.getElementById('standard-icons');
+        sizes.forEach(size => {
+            const div = document.createElement('div');
+            div.className = 'icon-preview';
+            div.innerHTML = `
+                <img src="icon-base.svg" width="${size}" height="${size}" alt="Icon ${size}x${size}">
+                <div class="size-label">icon-${size}x${size}.png</div>
+                <button class="download-btn" onclick="downloadIcon('icon-base.svg', ${size}, 'icon-${size}x${size}.png')">Download</button>
+            `;
+            standardContainer.appendChild(div);
+        });
+
+        // Maskable icons
+        const maskableContainer = document.getElementById('maskable-icons');
+        [192, 512].forEach(size => {
+            const div = document.createElement('div');
+            div.className = 'icon-preview';
+            div.innerHTML = `
+                <img src="icon-maskable-base.svg" width="${size}" height="${size}" alt="Maskable Icon ${size}x${size}">
+                <div class="size-label">icon-maskable-${size}x${size}.png</div>
+                <button class="download-btn" onclick="downloadIcon('icon-maskable-base.svg', ${size}, 'icon-maskable-${size}x${size}.png')">Download</button>
+            `;
+            maskableContainer.appendChild(div);
+        });
+
+        // Shortcut icons
+        const shortcutContainer = document.getElementById('shortcut-icons');
+        const shortcuts = [
+            { name: 'task-shortcut', label: 'Tasks' },
+            { name: 'profile-shortcut', label: 'Profile' },
+            { name: 'analytics-shortcut', label: 'Analytics' }
+        ];
+        
+        shortcuts.forEach(shortcut => {
+            const div = document.createElement('div');
+            div.className = 'icon-preview';
+            div.innerHTML = `
+                <img src="${shortcut.name}.svg" width="96" height="96" alt="${shortcut.label} Icon">
+                <div class="size-label">${shortcut.name}.png</div>
+                <button class="download-btn" onclick="downloadIcon('${shortcut.name}.svg', 96, '${shortcut.name}.png')">Download</button>
+            `;
+            shortcutContainer.appendChild(div);
+        });
+
+        function downloadIcon(svgFile, size, filename) {
+            // Create a canvas to convert SVG to PNG
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = size;
+            canvas.height = size;
+
+            const img = new Image();
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, size, size);
+                
+                // Convert to PNG and download
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 'image/png');
+            };
+            img.src = svgFile;
+        }
+
+        function downloadAllIcons() {
+            const allIcons = [
+                // Standard icons
+                { svg: 'icon-base.svg', size: 72, name: 'icon-72x72.png' },
+                { svg: 'icon-base.svg', size: 96, name: 'icon-96x96.png' },
+                { svg: 'icon-base.svg', size: 128, name: 'icon-128x128.png' },
+                { svg: 'icon-base.svg', size: 144, name: 'icon-144x144.png' },
+                { svg: 'icon-base.svg', size: 152, name: 'icon-152x152.png' },
+                { svg: 'icon-base.svg', size: 192, name: 'icon-192x192.png' },
+                { svg: 'icon-base.svg', size: 384, name: 'icon-384x384.png' },
+                { svg: 'icon-base.svg', size: 512, name: 'icon-512x512.png' },
+                // Maskable icons
+                { svg: 'icon-maskable-base.svg', size: 192, name: 'icon-maskable-192x192.png' },
+                { svg: 'icon-maskable-base.svg', size: 512, name: 'icon-maskable-512x512.png' },
+                // Shortcut icons
+                { svg: 'task-shortcut.svg', size: 96, name: 'task-shortcut.png' },
+                { svg: 'profile-shortcut.svg', size: 96, name: 'profile-shortcut.png' },
+                { svg: 'analytics-shortcut.svg', size: 96, name: 'analytics-shortcut.png' }
+            ];
+
+            let currentIndex = 0;
+            const downloadNext = () => {
+                if (currentIndex >= allIcons.length) {
+                    alert('🎉 All icons downloaded successfully!');
+                    return;
+                }
+                
+                const icon = allIcons[currentIndex];
+                downloadIcon(icon.svg, icon.size, icon.name);
+                currentIndex++;
+                
+                // Add small delay between downloads
+                setTimeout(downloadNext, 500);
+            };
+            
+            downloadNext();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+/* Component-specific styles for Diet Game */
+
+/* Simple Test Component Styles */
+.simple-test-container {
+  padding: 20px;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+}
+
+.simple-test-title {
+  color: #333;
+}
+
+.simple-test-card {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+/* Animated Progress Bar Styles */
+.progress-bar-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  background-color: var(--progress-bg-color, #E5E7EB);
+}
+
+/* Dynamic height classes for progress bars */
+.progress-bar-height-8 {
+  height: 8px;
+}
+
+.progress-bar-height-12 {
+  height: 12px;
+}
+
+.progress-bar-height-14 {
+  height: 14px;
+}
+
+.progress-bar-height-16 {
+  height: 16px;
+}
+
+.progress-bar-height-20 {
+  height: 20px;
+}
+
+/* Common background colors for progress bars */
+.progress-bar-bg-gray {
+  background-color: #E5E7EB;
+}
+
+.progress-bar-bg-blue {
+  background-color: #DBEAFE;
+}
+
+.progress-bar-bg-green {
+  background-color: #D1FAE5;
+}
+
+.progress-bar-bg-purple {
+  background-color: #EDE9FE;
+}
+
+.progress-bar-bg-yellow {
+  background-color: #FEF3C7;
+}
+
+.progress-bar-background-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  filter: blur(4px);
+}
+
+.progress-bar-main {
+  position: relative;
+  height: 100%;
+  border-radius: 9999px;
+}
+
+.progress-bar-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  opacity: 0.3;
+}
+
+.progress-bar-text-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar-text {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.progress-bar-completion {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar-completion-icon {
+  color: white;
+  font-size: 1.125rem;
+}
+
+/* AR Recipes Page Styles */
+.ar-canvas-hidden {
+  display: none;
+}
+
+.ar-overlay-item {
+  position: absolute;
+  background-color: white;
+  background-opacity: 0.9;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translate(-50%, -50%);
+}
+
+.ar-overlay-item-name {
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.ar-overlay-item-calories {
+  color: #4b5563;
+}
+
+.ar-overlay-item-confidence {
+  color: #059669;
+  font-size: 0.75rem;
+}
+
+/* Dynamic positioning classes for AR overlay items */
+.ar-overlay-item-0 {
+  left: 50%;
+  top: 20%;
+}
+
+.ar-overlay-item-1 {
+  left: 60%;
+  top: 25%;
+}
+
+.ar-overlay-item-2 {
+  left: 70%;
+  top: 30%;
+}
+
+.ar-overlay-item-3 {
+  left: 80%;
+  top: 35%;
+}
+
+.ar-overlay-item-4 {
+  left: 90%;
+  top: 40%;
+}

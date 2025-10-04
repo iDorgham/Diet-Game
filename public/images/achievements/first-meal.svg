@@ -1,0 +1,24 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Badge Background -->
+  <circle cx="64" cy="64" r="60" fill="#085492" stroke="#71E6DE" stroke-width="4"/>
+  
+  <!-- Inner circle -->
+  <circle cx="64" cy="64" r="45" fill="#71E6DE" opacity="0.2"/>
+  
+  <!-- Apple Icon -->
+  <path d="M64 30C64 30 50 40 50 60C50 70 55 75 64 75C73 75 78 70 78 60C78 40 64 30 64 30Z" fill="#085492"/>
+  
+  <!-- Apple Stem -->
+  <rect x="62" y="25" width="4" height="8" fill="#998B73" rx="2"/>
+  
+  <!-- Leaf -->
+  <path d="M66 25C66 25 72 20 76 25C72 30 66 25 66 25Z" fill="#085492"/>
+  
+  <!-- Checkmark -->
+  <circle cx="64" cy="90" r="12" fill="#085492"/>
+  <path d="M58 90L61 93L70 84" stroke="#71E6DE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Decorative stars -->
+  <path d="M30 30L32 35L37 35L33 38L34 43L30 40L26 43L27 38L23 35L28 35Z" fill="#71E6DE" opacity="0.8"/>
+  <path d="M95 25L97 30L102 30L98 33L99 38L95 35L91 38L92 33L88 30L93 30Z" fill="#71E6DE" opacity="0.8"/>
+</svg>
