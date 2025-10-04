@@ -1,0 +1,149 @@
+[debug] [2025-10-04T20:32:06.103Z] [Firebase Plugin] Activating Firebase extension.
+[debug] [2025-10-04T20:32:14.150Z] [Firebase Plugin] requireAuthWrapper
+[debug] [2025-10-04T20:32:14.152Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-04T20:32:14.152Z] > authorizing via signed-in user (yasser.dorgham@gmail.com)
+[debug] [2025-10-04T20:32:14.154Z] Checked if tokens are valid: false, expires at: 1759604378935
+[debug] [2025-10-04T20:32:14.155Z] Checked if tokens are valid: false, expires at: 1759604378935
+[debug] [2025-10-04T20:32:14.155Z] > refreshing access token with scopes: []
+[debug] [2025-10-04T20:32:14.156Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-04T20:32:14.156Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[info] [Firebase Plugin] Starting Data Connect toolkit (version 2.13.0) on port 50002
+[debug] [2025-10-04T20:32:14.841Z] I1004 23:32:14.818586   48920 control.go:94] [/emulator/dietgame 720c] UpdateResources(): done
+Schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1004 23:32:14.818586   48920 control.go:94] [/emulator/dietgame 720c] UpdateResources(): done\nSchema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \n"}}
+[debug] [2025-10-04T20:32:14.841Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2025-10-04T20:32:14.842Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2025-10-04T20:32:14.842Z] Starting Data Connect Emulator with command {"binary":"C:\\Users\\User\\.cache\\firebase\\emulators\\dataconnect-emulator-2.13.0.exe","args":["--logtostderr","-v=2","dev","--listen=localhost:50002","--config_dir=d:\\Work\\AI\\Projects\\Diet Game\\dataconnect","--enable_output_schema_extensions=true","--enable_output_generated_sdk=true"],"optionalArgs":["listen","config_dir","enable_output_schema_extensions","enable_output_generated_sdk"],"joinArgs":true,"shell":false,"port":9399} {"metadata":{"emulator":{"name":"dataconnect"},"message":"Starting Data Connect Emulator with command {\"binary\":\"C:\\\\Users\\\\User\\\\.cache\\\\firebase\\\\emulators\\\\dataconnect-emulator-2.13.0.exe\",\"args\":[\"--logtostderr\",\"-v=2\",\"dev\",\"--listen=localhost:50002\",\"--config_dir=d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\dataconnect\",\"--enable_output_schema_extensions=true\",\"--enable_output_generated_sdk=true\"],\"optionalArgs\":[\"listen\",\"config_dir\",\"enable_output_schema_extensions\",\"enable_output_generated_sdk\"],\"joinArgs\":true,\"shell\":false,\"port\":9399}"}}
+[info] i  dataconnect: Data Connect Emulator logging to dataconnect-debug.log {"metadata":{"emulator":{"name":"dataconnect"},"message":"Data Connect Emulator logging to \u001b[1mdataconnect-debug.log\u001b[22m"}}
+[debug] [2025-10-04T20:32:15.015Z] I1004 23:32:14.927663   20516 load.go:31] Reloading schema and connectors...
+I1004 23:32:15.002337   20516 control.go:94] [/emulator/dietgame f87c] UpdateResources(): done
+Schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1004 23:32:14.927663   20516 load.go:31] Reloading schema and connectors...\nI1004 23:32:15.002337   20516 control.go:94] [/emulator/dietgame f87c] UpdateResources(): done\nSchema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \n"}}
+[debug] [2025-10-04T20:32:15.111Z] I1004 23:32:15.070700   20516 codegen.go:82] [connector "example" javascriptSdk] Generating sources into "d:\\Work\\AI\\Projects\\Diet Game\\src\\dataconnect-generated"
+I1004 23:32:15.086604   20516 codegen.go:82] [connector "example" javascriptSdk] Generating sources into "d:\\Work\\AI\\Projects\\Diet Game\\backend\\src\\dataconnect-generated"
+I1004 23:32:15.100795   20516 collector.go:107] schema extensions wrote into "d:\\Work\\AI\\Projects\\Diet Game\\dataconnect\\.dataconnect\\schema"
+Generated sources: prelude.gql [73251B] main\mutation.gql [13679B] main\implicit.gql [1261B] main\input.gql [28173B] main\relation.gql [13746B] main\query.gql [5099B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1004 23:32:15.070700   20516 codegen.go:82] [connector \"example\" javascriptSdk] Generating sources into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\src\\\\dataconnect-generated\"\nI1004 23:32:15.086604   20516 codegen.go:82] [connector \"example\" javascriptSdk] Generating sources into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\backend\\\\src\\\\dataconnect-generated\"\nI1004 23:32:15.100795   20516 collector.go:107] schema extensions wrote into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\dataconnect\\\\.dataconnect\\\\schema\"\nGenerated sources: prelude.gql [73251B] main\\mutation.gql [13679B] main\\implicit.gql [1261B] main\\input.gql [28173B] main\\relation.gql [13746B] main\\query.gql [5099B] \n"}}
+[debug] [2025-10-04T20:32:15.162Z] I1004 23:32:15.133783   20516 collector.go:107] connector "example" javascriptSdk wrote into "d:\\Work\\AI\\Projects\\Diet Game\\src\\dataconnect-generated"
+Generated sources: react\index.d.ts [3961B] index.cjs.js [4051B] package.json [863B] README.md [40931B] react\package.json [460B] react\esm\package.json [17B] react\index.cjs.js [3439B] react\esm\index.esm.js [3269B] react\README.md [48299B] index.d.ts [8025B] esm\index.esm.js [3561B] esm\package.json [17B] 
+I1004 23:32:15.140652   20516 installsdk.go:86] Running command: C:\Program Files\nodejs\npm.cmd install file:src\dataconnect-generated
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1004 23:32:15.133783   20516 collector.go:107] connector \"example\" javascriptSdk wrote into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\src\\\\dataconnect-generated\"\nGenerated sources: react\\index.d.ts [3961B] index.cjs.js [4051B] package.json [863B] README.md [40931B] react\\package.json [460B] react\\esm\\package.json [17B] react\\index.cjs.js [3439B] react\\esm\\index.esm.js [3269B] react\\README.md [48299B] index.d.ts [8025B] esm\\index.esm.js [3561B] esm\\package.json [17B] \nI1004 23:32:15.140652   20516 installsdk.go:86] Running command: C:\\Program Files\\nodejs\\npm.cmd install file:src\\dataconnect-generated\n"}}
+[debug] [2025-10-04T20:32:16.889Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-04T20:32:16.889Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-04T20:32:16.900Z] [Firebase Plugin] User found:  yasser.dorgham@gmail.com
+[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects
+[debug] [2025-10-04T20:32:16.901Z] Checked if tokens are valid: true, expires at: 1759613535889
+[debug] [2025-10-04T20:32:16.902Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2025-10-04T20:32:21.133Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-10-04T20:32:21.133Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[debug] [2025-10-04T20:32:40.101Z] E1004 23:32:38.667795   20516 installsdk.go:88] Failed to install package: exit status 0xc000013a
+I1004 23:32:39.463844   20516 collector.go:107] connector "example" javascriptSdk wrote into "d:\\Work\\AI\\Projects\\Diet Game\\backend\\src\\dataconnect-generated"
+Generated sources: index.d.ts [8025B] esm\index.esm.js [3561B] esm\package.json [17B] index.cjs.js [4051B] package.json [637B] README.md [40804B] 
+I1004 23:32:39.479478   20516 installsdk.go:86] Running command: C:\Program Files\nodejs\npm.cmd install file:src\dataconnect-generated
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"E1004 23:32:38.667795   20516 installsdk.go:88] Failed to install package: exit status 0xc000013a\nI1004 23:32:39.463844   20516 collector.go:107] connector \"example\" javascriptSdk wrote into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\backend\\\\src\\\\dataconnect-generated\"\nGenerated sources: index.d.ts [8025B] esm\\index.esm.js [3561B] esm\\package.json [17B] index.cjs.js [4051B] package.json [637B] README.md [40804B] \nI1004 23:32:39.479478   20516 installsdk.go:86] Running command: C:\\Program Files\\nodejs\\npm.cmd install file:src\\dataconnect-generated\n"}}
+[debug] [2025-10-04T20:33:31.528Z] E1004 23:33:31.072240   20516 installsdk.go:88] Failed to install package: exit status 1
+I1004 23:33:31.072876   20516 load.go:109] Finished reloading
+I1004 23:33:31.085514   20516 dev.go:102] Listening on address (HTTP + gRPC): 127.0.0.1:50002
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"E1004 23:33:31.072240   20516 installsdk.go:88] Failed to install package: exit status 1\nI1004 23:33:31.072876   20516 load.go:109] Finished reloading\nI1004 23:33:31.085514   20516 dev.go:102] Listening on address (HTTP + gRPC): 127.0.0.1:50002\n"}}
+[info] [Firebase Plugin] Stopping Data Connect toolkit
+[debug] [2025-10-04T23:22:28.473Z] [Firebase Plugin] Activating Firebase extension.
+[debug] [2025-10-04T23:22:41.038Z] [Firebase Plugin] requireAuthWrapper
+[debug] [2025-10-04T23:22:41.039Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-04T23:22:41.040Z] > authorizing via signed-in user (yasser.dorgham@gmail.com)
+[debug] [2025-10-04T23:22:41.042Z] Checked if tokens are valid: false, expires at: 1759613535889
+[debug] [2025-10-04T23:22:41.042Z] Checked if tokens are valid: false, expires at: 1759613535889
+[debug] [2025-10-04T23:22:41.042Z] > refreshing access token with scopes: []
+[debug] [2025-10-04T23:22:41.044Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-04T23:22:41.044Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-04T23:22:41.056Z] [Firebase Plugin] VSCode notification server listening on port 40001
+[info] [Firebase Plugin] Starting Data Connect toolkit (version 2.13.0) on port 50001
+[debug] [2025-10-04T23:22:41.592Z] I1005 02:22:41.571511   14100 control.go:94] [/emulator/dietgame ad61] UpdateResources(): done
+Schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1005 02:22:41.571511   14100 control.go:94] [/emulator/dietgame ad61] UpdateResources(): done\nSchema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \n"}}
+[debug] [2025-10-04T23:22:41.592Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2025-10-04T23:22:41.593Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2025-10-04T23:22:41.593Z] Starting Data Connect Emulator with command {"binary":"C:\\Users\\User\\.cache\\firebase\\emulators\\dataconnect-emulator-2.13.0.exe","args":["--logtostderr","-v=2","dev","--listen=localhost:50001","--config_dir=d:\\Work\\AI\\Projects\\Diet Game\\dataconnect","--enable_output_schema_extensions=true","--enable_output_generated_sdk=true"],"optionalArgs":["listen","config_dir","enable_output_schema_extensions","enable_output_generated_sdk"],"joinArgs":true,"shell":false,"port":9399} {"metadata":{"emulator":{"name":"dataconnect"},"message":"Starting Data Connect Emulator with command {\"binary\":\"C:\\\\Users\\\\User\\\\.cache\\\\firebase\\\\emulators\\\\dataconnect-emulator-2.13.0.exe\",\"args\":[\"--logtostderr\",\"-v=2\",\"dev\",\"--listen=localhost:50001\",\"--config_dir=d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\dataconnect\",\"--enable_output_schema_extensions=true\",\"--enable_output_generated_sdk=true\"],\"optionalArgs\":[\"listen\",\"config_dir\",\"enable_output_schema_extensions\",\"enable_output_generated_sdk\"],\"joinArgs\":true,\"shell\":false,\"port\":9399}"}}
+[info] i  dataconnect: Data Connect Emulator logging to dataconnect-debug.log {"metadata":{"emulator":{"name":"dataconnect"},"message":"Data Connect Emulator logging to \u001b[1mdataconnect-debug.log\u001b[22m"}}
+[debug] [2025-10-04T23:22:41.787Z] I1005 02:22:41.631706    2580 load.go:31] Reloading schema and connectors...
+I1005 02:22:41.671466    2580 control.go:94] [/emulator/dietgame df68] UpdateResources(): done
+Schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+I1005 02:22:41.707256    2580 codegen.go:82] [connector "example" javascriptSdk] Generating sources into "d:\\Work\\AI\\Projects\\Diet Game\\src\\dataconnect-generated"
+I1005 02:22:41.717772    2580 codegen.go:82] [connector "example" javascriptSdk] Generating sources into "d:\\Work\\AI\\Projects\\Diet Game\\backend\\src\\dataconnect-generated"
+I1005 02:22:41.729990    2580 collector.go:107] schema extensions wrote into "d:\\Work\\AI\\Projects\\Diet Game\\dataconnect\\.dataconnect\\schema"
+Generated sources: main\relation.gql [13746B] main\query.gql [5099B] main\mutation.gql [13679B] prelude.gql [73251B] main\implicit.gql [1261B] main\input.gql [28173B] 
+I1005 02:22:41.752326    2580 collector.go:107] connector "example" javascriptSdk wrote into "d:\\Work\\AI\\Projects\\Diet Game\\src\\dataconnect-generated"
+Generated sources: index.d.ts [8025B] esm\index.esm.js [3561B] package.json [863B] README.md [40931B] react\index.d.ts [3961B] react\esm\package.json [17B] react\index.cjs.js [3439B] react\esm\index.esm.js [3269B] esm\package.json [17B] index.cjs.js [4051B] react\package.json [460B] react\README.md [48299B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1005 02:22:41.631706    2580 load.go:31] Reloading schema and connectors...\nI1005 02:22:41.671466    2580 control.go:94] [/emulator/dietgame df68] UpdateResources(): done\nSchema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \nI1005 02:22:41.707256    2580 codegen.go:82] [connector \"example\" javascriptSdk] Generating sources into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\src\\\\dataconnect-generated\"\nI1005 02:22:41.717772    2580 codegen.go:82] [connector \"example\" javascriptSdk] Generating sources into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\backend\\\\src\\\\dataconnect-generated\"\nI1005 02:22:41.729990    2580 collector.go:107] schema extensions wrote into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\dataconnect\\\\.dataconnect\\\\schema\"\nGenerated sources: main\\relation.gql [13746B] main\\query.gql [5099B] main\\mutation.gql [13679B] prelude.gql [73251B] main\\implicit.gql [1261B] main\\input.gql [28173B] \nI1005 02:22:41.752326    2580 collector.go:107] connector \"example\" javascriptSdk wrote into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\src\\\\dataconnect-generated\"\nGenerated sources: index.d.ts [8025B] esm\\index.esm.js [3561B] package.json [863B] README.md [40931B] react\\index.d.ts [3961B] react\\esm\\package.json [17B] react\\index.cjs.js [3439B] react\\esm\\index.esm.js [3269B] esm\\package.json [17B] index.cjs.js [4051B] react\\package.json [460B] react\\README.md [48299B] \n"}}
+[debug] [2025-10-04T23:22:42.260Z] I1005 02:22:41.803593    2580 installsdk.go:86] Running command: C:\Program Files\nodejs\npm.cmd install file:src\dataconnect-generated
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1005 02:22:41.803593    2580 installsdk.go:86] Running command: C:\\Program Files\\nodejs\\npm.cmd install file:src\\dataconnect-generated\n"}}
+[debug] [2025-10-04T23:22:42.803Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-04T23:22:42.803Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-04T23:22:42.813Z] [Firebase Plugin] User found:  yasser.dorgham@gmail.com
+[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects
+[debug] [2025-10-04T23:22:42.814Z] Checked if tokens are valid: true, expires at: 1759623761803
+[debug] [2025-10-04T23:22:42.815Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2025-10-04T23:22:51.605Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-10-04T23:22:51.606Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[debug] [2025-10-04T23:23:30.748Z] E1005 02:23:30.307494    2580 installsdk.go:88] Failed to install package: exit status 1
+I1005 02:23:30.326428    2580 collector.go:107] connector "example" javascriptSdk wrote into "d:\\Work\\AI\\Projects\\Diet Game\\backend\\src\\dataconnect-generated"
+Generated sources: esm\index.esm.js [3561B] esm\package.json [17B] index.cjs.js [4051B] package.json [637B] README.md [40804B] index.d.ts [8025B] 
+I1005 02:23:30.353777    2580 installsdk.go:86] Running command: C:\Program Files\nodejs\npm.cmd install file:src\dataconnect-generated
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"E1005 02:23:30.307494    2580 installsdk.go:88] Failed to install package: exit status 1\nI1005 02:23:30.326428    2580 collector.go:107] connector \"example\" javascriptSdk wrote into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\backend\\\\src\\\\dataconnect-generated\"\nGenerated sources: esm\\index.esm.js [3561B] esm\\package.json [17B] index.cjs.js [4051B] package.json [637B] README.md [40804B] index.d.ts [8025B] \nI1005 02:23:30.353777    2580 installsdk.go:86] Running command: C:\\Program Files\\nodejs\\npm.cmd install file:src\\dataconnect-generated\n"}}
+[debug] [2025-10-04T23:23:33.988Z] E1005 02:23:33.320931    2580 installsdk.go:88] Failed to install package: exit status 0xc000013a
+I1005 02:23:33.320931    2580 load.go:109] Finished reloading
+I1005 02:23:33.335853    2580 dev.go:102] Listening on address (HTTP + gRPC): 127.0.0.1:50001
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"E1005 02:23:33.320931    2580 installsdk.go:88] Failed to install package: exit status 0xc000013a\nI1005 02:23:33.320931    2580 load.go:109] Finished reloading\nI1005 02:23:33.335853    2580 dev.go:102] Listening on address (HTTP + gRPC): 127.0.0.1:50001\n"}}
+[debug] [2025-10-04T23:25:08.343Z] [Firebase Plugin] Activating Firebase extension.
+[debug] [2025-10-04T23:25:16.083Z] [Firebase Plugin] requireAuthWrapper
+[debug] [2025-10-04T23:25:16.084Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-04T23:25:16.084Z] > authorizing via signed-in user (yasser.dorgham@gmail.com)
+[debug] [2025-10-04T23:25:16.086Z] Checked if tokens are valid: true, expires at: 1759623761803
+[debug] [2025-10-04T23:25:16.087Z] Checked if tokens are valid: true, expires at: 1759623761803
+[debug] [2025-10-04T23:25:16.087Z] [Firebase Plugin] User found:  yasser.dorgham@gmail.com
+[info] [Firebase Plugin] (Core:Project) New user detected, fetching projects
+[debug] [2025-10-04T23:25:16.088Z] Checked if tokens are valid: true, expires at: 1759623761803
+[debug] [2025-10-04T23:25:16.089Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[info] [Firebase Plugin] Starting Data Connect toolkit (version 2.13.0) on port 50002
+[debug] [2025-10-04T23:25:16.559Z] I1005 02:25:16.530969   87440 control.go:94] [/emulator/dietgame fe62] UpdateResources(): done
+Schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1005 02:25:16.530969   87440 control.go:94] [/emulator/dietgame fe62] UpdateResources(): done\nSchema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \n"}}
+[debug] [2025-10-04T23:25:16.560Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2025-10-04T23:25:16.561Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2025-10-04T23:25:16.561Z] Starting Data Connect Emulator with command {"binary":"C:\\Users\\User\\.cache\\firebase\\emulators\\dataconnect-emulator-2.13.0.exe","args":["--logtostderr","-v=2","dev","--listen=localhost:50002","--config_dir=d:\\Work\\AI\\Projects\\Diet Game\\dataconnect","--enable_output_schema_extensions=true","--enable_output_generated_sdk=true"],"optionalArgs":["listen","config_dir","enable_output_schema_extensions","enable_output_generated_sdk"],"joinArgs":true,"shell":false,"port":9399} {"metadata":{"emulator":{"name":"dataconnect"},"message":"Starting Data Connect Emulator with command {\"binary\":\"C:\\\\Users\\\\User\\\\.cache\\\\firebase\\\\emulators\\\\dataconnect-emulator-2.13.0.exe\",\"args\":[\"--logtostderr\",\"-v=2\",\"dev\",\"--listen=localhost:50002\",\"--config_dir=d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\dataconnect\",\"--enable_output_schema_extensions=true\",\"--enable_output_generated_sdk=true\"],\"optionalArgs\":[\"listen\",\"config_dir\",\"enable_output_schema_extensions\",\"enable_output_generated_sdk\"],\"joinArgs\":true,\"shell\":false,\"port\":9399}"}}
+[info] i  dataconnect: Data Connect Emulator logging to dataconnect-debug.log {"metadata":{"emulator":{"name":"dataconnect"},"message":"Data Connect Emulator logging to \u001b[1mdataconnect-debug.log\u001b[22m"}}
+[debug] [2025-10-04T23:25:16.617Z] I1005 02:25:16.609144   87684 load.go:31] Reloading schema and connectors...
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1005 02:25:16.609144   87684 load.go:31] Reloading schema and connectors...\n"}}
+[debug] [2025-10-04T23:25:16.657Z] I1005 02:25:16.645601   87684 control.go:94] [/emulator/dietgame 6049] UpdateResources(): done
+Schema: sources: schema\schema.gql [1992B] 
+Connector "example": sources: example\mutations.gql [1243B] example\queries.gql [1801B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1005 02:25:16.645601   87684 control.go:94] [/emulator/dietgame 6049] UpdateResources(): done\nSchema: sources: schema\\schema.gql [1992B] \nConnector \"example\": sources: example\\mutations.gql [1243B] example\\queries.gql [1801B] \n"}}
+[debug] [2025-10-04T23:25:16.685Z] I1005 02:25:16.678083   87684 codegen.go:82] [connector "example" javascriptSdk] Generating sources into "d:\\Work\\AI\\Projects\\Diet Game\\src\\dataconnect-generated"
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1005 02:25:16.678083   87684 codegen.go:82] [connector \"example\" javascriptSdk] Generating sources into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\src\\\\dataconnect-generated\"\n"}}
+[debug] [2025-10-04T23:25:16.686Z] I1005 02:25:16.685650   87684 codegen.go:82] [connector "example" javascriptSdk] Generating sources into "d:\\Work\\AI\\Projects\\Diet Game\\backend\\src\\dataconnect-generated"
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1005 02:25:16.685650   87684 codegen.go:82] [connector \"example\" javascriptSdk] Generating sources into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\backend\\\\src\\\\dataconnect-generated\"\n"}}
+[debug] [2025-10-04T23:25:17.009Z] I1005 02:25:17.009739   87684 collector.go:107] schema extensions wrote into "d:\\Work\\AI\\Projects\\Diet Game\\dataconnect\\.dataconnect\\schema"
+Generated sources: prelude.gql [73251B] main\implicit.gql [1261B] main\input.gql [28173B] main\relation.gql [13746B] main\query.gql [5099B] main\mutation.gql [13679B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1005 02:25:17.009739   87684 collector.go:107] schema extensions wrote into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\dataconnect\\\\.dataconnect\\\\schema\"\nGenerated sources: prelude.gql [73251B] main\\implicit.gql [1261B] main\\input.gql [28173B] main\\relation.gql [13746B] main\\query.gql [5099B] main\\mutation.gql [13679B] \n"}}
+[debug] [2025-10-04T23:25:17.013Z] I1005 02:25:17.013534   87684 collector.go:107] connector "example" javascriptSdk wrote into "d:\\Work\\AI\\Projects\\Diet Game\\src\\dataconnect-generated"
+Generated sources: react\package.json [460B] react\esm\package.json [17B] react\README.md [48299B] esm\package.json [17B] README.md [40931B] react\index.cjs.js [3439B] react\esm\index.esm.js [3269B] index.d.ts [8025B] esm\index.esm.js [3561B] index.cjs.js [4051B] package.json [863B] react\index.d.ts [3961B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1005 02:25:17.013534   87684 collector.go:107] connector \"example\" javascriptSdk wrote into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\src\\\\dataconnect-generated\"\nGenerated sources: react\\package.json [460B] react\\esm\\package.json [17B] react\\README.md [48299B] esm\\package.json [17B] README.md [40931B] react\\index.cjs.js [3439B] react\\esm\\index.esm.js [3269B] index.d.ts [8025B] esm\\index.esm.js [3561B] index.cjs.js [4051B] package.json [863B] react\\index.d.ts [3961B] \n"}}
+[debug] [2025-10-04T23:25:17.144Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-10-04T23:25:17.145Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[debug] [2025-10-04T23:25:17.383Z] I1005 02:25:17.384306   87684 installsdk.go:86] Running command: C:\Program Files\nodejs\npm.cmd install file:src\dataconnect-generated
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I1005 02:25:17.384306   87684 installsdk.go:86] Running command: C:\\Program Files\\nodejs\\npm.cmd install file:src\\dataconnect-generated\n"}}
+[info] [Firebase Plugin] Stopping Data Connect toolkit
+[warn] !  Data Connect Emulator has exited upon receiving signal: SIGKILL 
+[debug] [2025-10-04T23:26:01.905Z] E1005 02:26:01.748479   87684 installsdk.go:88] Failed to install package: exit status 1
+I1005 02:26:01.815949   87684 collector.go:107] connector "example" javascriptSdk wrote into "d:\\Work\\AI\\Projects\\Diet Game\\backend\\src\\dataconnect-generated"
+Generated sources: index.d.ts [8025B] esm\index.esm.js [3561B] esm\package.json [17B] index.cjs.js [4051B] package.json [637B] README.md [40804B] 
+I1005 02:26:01.854048   87684 installsdk.go:86] Running command: C:\Program Files\nodejs\npm.cmd install file:src\dataconnect-generated
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"E1005 02:26:01.748479   87684 installsdk.go:88] Failed to install package: exit status 1\nI1005 02:26:01.815949   87684 collector.go:107] connector \"example\" javascriptSdk wrote into \"d:\\\\Work\\\\AI\\\\Projects\\\\Diet Game\\\\backend\\\\src\\\\dataconnect-generated\"\nGenerated sources: index.d.ts [8025B] esm\\index.esm.js [3561B] esm\\package.json [17B] index.cjs.js [4051B] package.json [637B] README.md [40804B] \nI1005 02:26:01.854048   87684 installsdk.go:86] Running command: C:\\Program Files\\nodejs\\npm.cmd install file:src\\dataconnect-generated\n"}}
+[debug] [2025-10-04T23:26:04.961Z] E1005 02:26:04.926273   87684 installsdk.go:88] Failed to install package: exit status 0xc000013a
+I1005 02:26:04.926273   87684 load.go:109] Finished reloading
+I1005 02:26:04.946332   87684 dev.go:102] Listening on address (HTTP + gRPC): 127.0.0.1:50002
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"E1005 02:26:04.926273   87684 installsdk.go:88] Failed to install package: exit status 0xc000013a\nI1005 02:26:04.926273   87684 load.go:109] Finished reloading\nI1005 02:26:04.946332   87684 dev.go:102] Listening on address (HTTP + gRPC): 127.0.0.1:50002\n"}}

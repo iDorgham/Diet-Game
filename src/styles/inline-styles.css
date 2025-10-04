@@ -1,0 +1,27 @@
+/* CSS Custom Properties for Dynamic Styles */
+
+/* Progress bar width - used for XP and achievement progress */
+.progress-fill {
+  --progress-width: 0%;
+  width: var(--progress-width);
+}
+
+/* Achievement card border and glow colors */
+.achievement-card {
+  --border-color: #e5e7eb;
+  --glow-shadow: none;
+  border-color: var(--border-color);
+  box-shadow: var(--glow-shadow);
+}
+
+/* Quest progress bar */
+.quest-progress .progress-fill {
+  --progress-width: 0%;
+  width: var(--progress-width);
+}
+
+/* Streak progress bar */
+.streak-progress .progress-fill {
+  --progress-width: 0%;
+  width: var(--progress-width);
+}

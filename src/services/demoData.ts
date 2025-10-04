@@ -787,4 +787,203 @@ export const modifyQuestDifficulty = (questId: string, difficulty: 'easy' | 'med
     console.log(`✅ Modified difficulty for "${quest.name}": ${difficulty}`);
     return quest;
   }
-  console.warn(`❌ Quest with ID "${questId}" not fou
+  console.warn(`❌ Quest with ID "${questId}" not found`);
+  return null;
+};
+
+/**
+ * Modify quest requirements and progress target
+ */
+export const modifyQuestRequirements = (questId: string, progressTarget: number, requirements: Record<string, any>) => {
+  const quest = demoQuests.find(q => q.id === questId);
+  if (quest) {
+    quest.progressTarget = progressTarget;
+    quest.requirements = requirements;
+    console.log(`✅ Modified requirements for "${quest.name}": ${progressTarget} target, new requirements`);
+    return quest;
+  }
+  console.warn(`❌ Quest with ID "${questId}" not found`);
+  return null;
+};
+
+/**
+ * Modify quest time limit
+ */
+export const modifyQuestTimeLimit = (questId: string, timeLimitHours: number) => {
+  const quest = demoQuests.find(q => q.id === questId);
+  if (quest) {
+    quest.timeLimit = timeLimitHours;
+    if (quest.isActive && quest.startedAt) {
+      quest.expiresAt = new Date(quest.startedAt.getTime() + timeLimitHours * 60 * 60 * 1000);
+    }
+    console.log(`✅ Modified time limit for "${quest.name}": ${timeLimitHours} hours`);
+    return quest;
+  }
+  console.warn(`❌ Quest with ID "${questId}" not found`);
+  return null;
+};
+
+/**
+ * Modify quest progress
+ */
+export const modifyQuestProgress = (questId: string, progress: number) => {
+  const quest = demoQuests.find(q => q.id === questId);
+  if (quest) {
+    quest.progress = Math.min(progress, quest.progressTarget);
+    console.log(`✅ Modified progress for "${quest.name}": ${quest.progress}/${quest.progressTarget}`);
+    return quest;
+  }
+  console.warn(`❌ Quest with ID "${questId}" not found`);
+  return null;
+};
+
+/**
+ * Modify quest name and description
+ */
+export const modifyQuestDescription = (questId: string, name: string, description: string) => {
+  const quest = demoQuests.find(q => q.id === questId);
+  if (quest) {
+    quest.name = name;
+    quest.description = description;
+    console.log(`✅ Modified description for quest: "${name}"`);
+    return quest;
+  }
+  console.warn(`❌ Quest with ID "${questId}" not found`);
+  return null;
+};
+
+/**
+ * Modify quest category
+ */
+export const modifyQuestCategory = (questId: string, category: string) => {
+  const quest = demoQuests.find(q => q.id === questId);
+  if (quest) {
+    quest.category = category;
+    console.log(`✅ Modified category for "${quest.name}": ${category}`);
+    return quest;
+  }
+  console.warn(`❌ Quest with ID "${questId}" not found`);
+  return null;
+};
+
+/**
+ * Modify quest type (daily/weekly/monthly)
+ */
+export const modifyQuestType = (questId: string, type: 'daily' | 'weekly' | 'monthly') => {
+  const quest = demoQuests.find(q => q.id === questId);
+  if (quest) {
+    quest.type = type;
+    // Adjust time limit based on type
+    if (type === 'daily') quest.timeLimit = 24;
+    else if (type === 'weekly') quest.timeLimit = 168;
+    else if (type === 'monthly') quest.timeLimit = 720;
+    console.log(`✅ Modified type for "${quest.name}": ${type}`);
+    return quest;
+  }
+  console.warn(`❌ Quest with ID "${questId}" not found`);
+  return null;
+};
+
+/**
+ * 🎮 BULK QUEST MODIFICATIONS
+ */
+
+/**
+ * Increase all quest rewards by multipliers
+ */
+export const increaseAllQuestRewards = (xpMultiplier: number = 1.5, coinMultiplier: number = 1.5) => {
+  demoQuests.forEach(quest => {
+    quest.xpReward = Math.round(quest.xpReward * xpMultiplier);
+    quest.coinReward = Math.round(quest.coinReward * coinMultiplier);
+  });
+  console.log(`✅ Increased all quest rewards: XP x${xpMultiplier}, Coins x${coinMultiplier}`);
+};
+
+/**
+ * Make all quests easier (reduce difficulty by one level)
+ */
+export const makeAllQuestsEasier = () => {
+  demoQuests.forEach(quest => {
+    if (quest.difficulty === 'legendary') quest.difficulty = 'epic';
+    else if (quest.difficulty === 'epic') quest.difficulty = 'hard';
+    else if (quest.difficulty === 'hard') quest.difficulty = 'medium';
+    else if (quest.difficulty === 'medium') quest.difficulty = 'easy';
+  });
+  console.log(`✅ Made all quests easier`);
+};
+
+/**
+ * Make all quests harder (increase difficulty by one level)
+ */
+export const makeAllQuestsHarder = () => {
+  demoQuests.forEach(quest => {
+    if (quest.difficulty === 'easy') quest.difficulty = 'medium';
+    else if (quest.difficulty === 'medium') quest.difficulty = 'hard';
+    else if (quest.difficulty === 'hard') quest.difficulty = 'epic';
+    else if (quest.difficulty === 'epic') quest.difficulty = 'legendary';
+  });
+  console.log(`✅ Made all quests harder`);
+};
+
+/**
+ * Get quest by ID for inspection
+ */
+export const getQuestById = (questId: string) => {
+  return demoQuests.find(q => q.id === questId);
+};
+
+/**
+ * List all quests with their current settings
+ */
+export const listAllQuests = () => {
+  console.log('🎯 Current Quest System:');
+  demoQuests.forEach(quest => {
+    console.log(`📋 ${quest.name} (${quest.id})`);
+    console.log(`   Difficulty: ${quest.difficulty} | Type: ${quest.type} | Category: ${quest.category}`);
+    console.log(`   Rewards: ${quest.xpReward} XP, ${quest.coinReward} coins`);
+    console.log(`   Progress: ${quest.progress}/${quest.progressTarget} | Time: ${quest.timeLimit}h`);
+    console.log(`   Status: ${quest.isActive ? '🔄 Active' : quest.isCompleted ? '✅ Completed' : '📋 Available'}`);
+    console.log('---');
+  });
+};
+
+/**
+ * Reset all demo data to default state
+ */
+export const resetDemoData = () => {
+  // Reset user progress
+  demoUserProgress.level = 1;
+  demoUserProgress.xp = 0;
+  demoUserProgress.xpToNextLevel = 100;
+  demoUserProgress.stars = 0;
+  demoUserProgress.totalXP = 0;
+  demoUserProgress.badgesUnlocked = 0;
+  demoUserProgress.achievementsUnlocked = 0;
+  demoUserProgress.questsCompleted = 0;
+  demoUserProgress.streaksActive = 0;
+  demoUserProgress.lastUpdated = new Date();
+
+  // Reset achievements
+  demoAchievements.forEach(achievement => {
+    achievement.isUnlocked = false;
+    achievement.unlockedAt = undefined;
+    achievement.isNew = false;
+    achievement.progress = 0;
+  });
+
+  // Reset quests
+  demoQuests.forEach(quest => {
+    quest.isActive = false;
+    quest.isCompleted = false;
+    quest.progress = 0;
+    quest.startedAt = undefined;
+  });
+
+  // Reset streaks
+  demoStreaks.forEach(streak => {
+    streak.currentCount = 0;
+    streak.isActive = false;
+    streak.isProtected = false;
+    streak.lastActivity = new Date();
+  });
+};

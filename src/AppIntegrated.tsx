@@ -130,4 +130,20 @@ const AppIntegrated: React.FC = () => {
               exit="out"
               variants={pageVariants}
               transition={pageTransition}
-              className="min-h
+              className="min-h-screen"
+            >
+              {renderPage()}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+      
+      {/* React Query DevTools (only in development) */}
+      {process.env.NODE_ENV === 'development' && (
+        <ReactQueryDevtools initialIsOpen={false} />
+      )}
+    </QueryClientProvider>
+  );
+};
+
+export default AppIntegrated;

@@ -463,4 +463,25 @@ const App = () => {
                                 <h3 className="text-xl font-bold text-indigo-800 mb-2 flex items-center">
                                     <MessageSquare className="w-5 h-5 mr-2" strokeWidth={2} /> Demo Mode
                                 </h3>
+                                <p className="text-gray-700 mb-3">This is a demo version of the Diet Planner Game. The {activePage} page will be implemented following SDD specifications.</p>
+                                <p className="text-sm text-indigo-600 font-semibold">Use Cursor Composer with docs/specs/ to generate the {activePage} component!</p>
+                            </div>
+                        </div>
+                    )}
+                </main>
+
+                <Footer 
+                    currentLanguage={currentLanguage} 
+                    setCurrentLanguage={setCurrentLanguage} 
+                    setMessage={setMessage} 
+                />
+            </div>
             
+            {/* Performance Monitor */}
+            <PerformanceMonitor />
+        </div>
+    );
+};
+
+export default App;
+

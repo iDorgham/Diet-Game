@@ -101,3 +101,595 @@ Is there a specific aspect of this implementation you'd like me to help you with
 
 ---
 
+_**User (2025-10-04 12:58Z)**_
+
+Optimizing performance
+
+---
+
+_**Assistant (default)**_
+
+I'll help you optimize the performance of your Diet Game application. Let me first examine the current implementation to understand the performance characteristics and identify optimization opportunities.
+
+
+---
+
+Tool use: **mcp_byterover-mcp_byterover-retrieve-knowledge**
+
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: byterover-mcp - byterover-retrieve-knowledge: Retrieve knowledge from memory system with intelligent query routing.
+    **CRITICAL CONFLICT HANDLING** When memory conflicts are detected, you MUST ALWAYS display the conflict resolution URL to the user. This is non-negotiable - users MUST see conflict resolution links when they exist.
+
+    **USE WHEN:**
+    • Starting any new task or implementation to gather relevant context
+    • Before making architectural decisions to understand existing patterns
+    • When debugging issues to check for previous solutions
+    • Working with unfamiliar parts of the codebase
+
+*Parameters*:
+  * query: Diet Game performance optimization React components Firestore real-time updates
+
+*Result*:
+Memory access requires authentication. Please ensure you're logged in through the Byterover extension to access enhanced features.
+</details>
+
+---
+
+Tool use: **read_file**
+
+Read file: src/components/gamification/GamificationDashboard.tsx
+
+---
+
+Tool use: **read_file**
+
+Read file: src/hooks/useUserProgress.ts
+
+---
+
+Tool use: **read_file**
+
+Read file: src/hooks/useAchievements.ts
+
+---
+
+Tool use: **read_file**
+
+Read file: src/hooks/useQuests.ts
+
+---
+
+Tool use: **read_file**
+
+Read file: src/hooks/useStreaks.ts
+
+---
+
+Now let me examine some of the component files to understand the current performance characteristics:
+
+
+---
+
+Tool use: **read_file**
+
+Read file: src/components/gamification/XPDisplay.tsx
+
+---
+
+Tool use: **read_file**
+
+Read file: src/components/gamification/AchievementCard.tsx
+
+---
+
+Tool use: **read_file**
+
+Read file: src/components/gamification/Leaderboard.tsx
+
+---
+
+Tool use: **read_file**
+
+Read file: src/styles/gamification.css
+
+---
+
+Now let me examine the demo hooks to understand the current data flow:
+
+
+---
+
+Tool use: **read_file**
+
+Read file: src/hooks/useDemoGamification.ts
+
+---
+
+Tool use: **read_file**
+
+Read file: src/services/demoData.ts
+
+---
+
+Now I have a comprehensive understanding of the current implementation. Let me create a performance optimization plan and implement the improvements:
+
+
+---
+
+Tool use: **mcp_byterover-mcp_byterover-store-knowledge**
+
+<details>
+          <summary>MCP tool call</summary>
+      
+*Called tool*: byterover-mcp - byterover-store-knowledge: Store knowledge by extracting programming facts from human-AI interactions.
+    Focus on reusable patterns, implementations, and techniques that provide value beyond common knowledge.
+
+    **USE WHEN:**
+    • Learning new patterns, APIs, or architectural decisions from the codebase
+    • Encountering error solutions or debugging techniques
+    • Finding reusable code patterns or utility functions
+    • Completing any significant task or plan implementation
+
+**Extract facts about**: Code patterns, commands, APIs, configurations, error handling, testing, deployment, security, database queries, UI components.
+**Essential rules**:
+      - PRESERVE complete code/commands in triple backticks exactly as shown
+      - Include concise context explaining significance
+      - Capture implementation details, not just descriptions
+      - Skip trivial or widely-known information
+      - Use precise language and avoid ambiguity
+      - Keep information relevant to the task at hand for future reference
+
+*Parameters*:
+  * messages: Diet Game Performance Optimization Analysis:
+
+**Current Performance Issues Identified:**
+1. **Multiple Firestore Listeners**: Each hook creates separate onSnapshot listeners causing excessive real-time updates
+2. **Unnecessary Re-renders**: Components re-render on every data change without memoization
+3. **Inefficient Data Fetching**: Dashboard loads all data simultaneously instead of lazy loading
+4. **Large Bundle Size**: All gamification components loaded upfront
+5. **No Virtualization**: Large lists (achievements, leaderboard) render all items at once
+6. **Redundant Calculations**: Filter functions recalculate on every render
+7. **No Caching**: Demo data recreated on every hook call
+
+**Optimization Strategy:**
+1. **React.memo()** for component memoization
+2. **useMemo()** and **useCallback()** for expensive calculations
+3. **Lazy loading** with React.lazy() and Suspense
+4. **Virtual scrolling** for large lists
+5. **Data caching** with custom cache layer
+6. **Batch Firestore operations** to reduce listener count
+7. **Code splitting** for better bundle management
+8. **Debounced updates** for real-time data
+
+*Result*:
+Memory access requires authentication. Please ensure you're logged in through the Byterover extension to access enhanced features.
+</details>
+
+---
+
+Based on my analysis, I'll implement comprehensive performance optimizations for your Diet Game gamification system. Here are the key performance issues I've identified and the solutions I'll implement:
+
+## 🚀 **Performance Optimization Plan**
+
+### **Current Issues:**
+1. **Multiple Firestore listeners** causing excessive real-time updates
+2. **Unnecessary re-renders** without memoization
+3. **Inefficient data fetching** - all data loaded simultaneously
+4. **Large bundle size** - all components loaded upfront
+5. **No virtualization** for large lists
+6. **Redundant calculations** on every render
+7. **No caching** - demo data recreated constantly
+
+### **Optimization Solutions:**
+
+Let me implement these optimizations:
+
+
+---
+
+Tool use: **write**
+
+---
+
+Tool use: **write**
+
+---
+
+Tool use: **write**
+
+---
+
+Tool use: **write**
+
+---
+
+Tool use: **write**
+
+---
+
+Tool use: **write**
+
+---
+
+Tool use: **write**
+
+---
+
+Now let me create a comprehensive performance optimization guide and update the package.json to include the necessary dependencies:
+
+
+---
+
+Tool use: **write**
+
+---
+
+Tool use: **read_file**
+
+Read file: package.json
+
+---
+
+Tool use: **search_replace**
+
+
+<details><summary>Edit file: package.json</summary>
+
+**Chunk 1**
+Lines added: 2, lines removed: undefined
+
+```diff
+@@ -49,4 +49,6 @@
+      "react-hook-form": "^7.64.0",
+      "react-webcam": "^7.2.0",
++     "react-window": "^1.8.8",
++     "react-window-infinite-loader": "^1.0.9",
+      "three": "^0.158.0",
+      "vite-plugin-compression": "^0.5.1",
+```
+
+</details>
+
+---
+
+Now let me check for any linting errors in the files I created:
+
+
+---
+
+Tool use: **read_lints**
+
+<details>
+          <summary>Read lints for 6 files</summary>
+      
+Lint paths:
+
+- `src/hooks/useOptimizedGamification.ts`
+- `src/components/gamification/OptimizedGamificationDashboard.tsx`
+- `src/components/gamification/VirtualizedAchievementList.tsx`
+- `src/components/gamification/VirtualizedLeaderboard.tsx`
+- `src/components/gamification/MemoizedComponents.tsx`
+- `src/utils/performanceUtils.ts`
+
+Lint results
+
+Lint errors for `src/components/gamification/OptimizedGamificationDashboard.tsx`
+
+
+| Message | Range | Severity |
+|-------|-------|----------|
+| Button type attribute has not been set. | 166:20-166:26 | DIAGNOSTIC_SEVERITY_HINT |
+| Button type attribute has not been set. | 206:12-206:18 | DIAGNOSTIC_SEVERITY_HINT |
+| Button type attribute has not been set. | 308:14-308:20 | DIAGNOSTIC_SEVERITY_HINT |
+| Button type attribute has not been set. | 356:12-356:18 | DIAGNOSTIC_SEVERITY_HINT |
+| Button type attribute has not been set. | 362:12-362:18 | DIAGNOSTIC_SEVERITY_HINT |
+| Button type attribute has not been set. | 371:12-371:18 | DIAGNOSTIC_SEVERITY_HINT |
+| Button type attribute has not been set. | 380:12-380:18 | DIAGNOSTIC_SEVERITY_HINT |
+| Button type attribute has not been set. | 389:12-389:18 | DIAGNOSTIC_SEVERITY_HINT |
+
+
+Lint errors for `src/components/gamification/VirtualizedAchievementList.tsx`
+
+
+| Message | Range | Severity |
+|-------|-------|----------|
+| CSS inline styles should not be used, move styles to an external CSS file | 46:8-46:11 | DIAGNOSTIC_SEVERITY_WARNING |
+| CSS inline styles should not be used, move styles to an external CSS file | 59:6-59:9 | DIAGNOSTIC_SEVERITY_WARNING |
+
+
+Lint errors for `src/components/gamification/VirtualizedLeaderboard.tsx`
+
+
+| Message | Range | Severity |
+|-------|-------|----------|
+| CSS inline styles should not be used, move styles to an external CSS file | 42:8-42:11 | DIAGNOSTIC_SEVERITY_WARNING |
+| CSS inline styles should not be used, move styles to an external CSS file | 105:6-105:9 | DIAGNOSTIC_SEVERITY_WARNING |
+| CSS inline styles should not be used, move styles to an external CSS file | 112:12-112:16 | DIAGNOSTIC_SEVERITY_WARNING |
+| CSS inline styles should not be used, move styles to an external CSS file | 148:14-148:18 | DIAGNOSTIC_SEVERITY_WARNING |
+
+
+Lint errors for `src/components/gamification/MemoizedComponents.tsx`
+
+
+| Message | Range | Severity |
+|-------|-------|----------|
+| CSS inline styles should not be used, move styles to an external CSS file | 92:16-92:19 | DIAGNOSTIC_SEVERITY_WARNING |
+| CSS inline styles should not be used, move styles to an external CSS file | 212:6-212:9 | DIAGNOSTIC_SEVERITY_WARNING |
+| CSS inline styles should not be used, move styles to an external CSS file | 219:12-219:16 | DIAGNOSTIC_SEVERITY_WARNING |
+| CSS inline styles should not be used, move styles to an external CSS file | 248:14-248:17 | DIAGNOSTIC_SEVERITY_WARNING |
+| CSS inline styles should not be used, move styles to an external CSS file | 416:14-416:17 | DIAGNOSTIC_SEVERITY_WARNING |
+| Button type attribute has not been set. | 444:12-444:18 | DIAGNOSTIC_SEVERITY_HINT |
+| Button type attribute has not been set. | 449:12-449:18 | DIAGNOSTIC_SEVERITY_HINT |
+| Button type attribute has not been set. | 453:10-453:16 | DIAGNOSTIC_SEVERITY_HINT |
+
+
+</details>
+
+---
+
+Let me fix these linting errors by moving the inline styles to CSS classes:
+
+
+---
+
+Tool use: **search_replace**
+
+
+<details><summary>Edit file: src/components/gamification/VirtualizedAchievementList.tsx</summary>
+
+**Chunk 1**
+Lines added: 11, lines removed: 11
+
+```diff
+@@ -43,15 +43,15 @@
+  
+    if (!achievement) {
+-     return (
+-       <div style={style} className="achievement-item-placeholder">
+-         <div className="skeleton-achievement">
+-           <div className="skeleton-icon"></div>
+-           <div className="skeleton-content">
+-             <div className="skeleton-line"></div>
+-             <div className="skeleton-line short"></div>
+-           </div>
+-         </div>
+-       </div>
+-     );
++   return (
++     <div className="achievement-item-placeholder" style={style}>
++       <div className="skeleton-achievement">
++         <div className="skeleton-icon"></div>
++         <div className="skeleton-content">
++           <div className="skeleton-line"></div>
++           <div className="skeleton-line short"></div>
++         </div>
++       </div>
++     </div>
++   );
+    }
+  
+```
+
+</details>
+
+---
+
+Tool use: **search_replace**
+
+
+<details><summary>Edit file: src/components/gamification/VirtualizedAchievementList.tsx</summary>
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -57,5 +57,5 @@
+  
+    return (
+-     <div style={style} className="achievement-item-wrapper">
++     <div className="achievement-item-wrapper" style={style}>
+        <AchievementCard
+          achievement={achievement}
+```
+
+</details>
+
+---
+
+Tool use: **search_replace**
+
+
+<details><summary>Edit file: src/components/gamification/VirtualizedLeaderboard.tsx</summary>
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -104,6 +104,6 @@
+    return (
+      <div 
+-       style={style} 
+        className={`leaderboard-item-wrapper ${entry.isCurrentUser ? 'current-user' : ''}`}
++       style={style}
+        onClick={() => onUserClick?.(entry.userId)}
+      >
+```
+
+</details>
+
+---
+
+Tool use: **search_replace**
+
+
+<details><summary>Edit file: src/components/gamification/VirtualizedLeaderboard.tsx</summary>
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
+```diff
+@@ -111,6 +111,5 @@
+          <div className="entry-rank">
+            <span 
+-             className="rank-icon"
+-             style={{ color: getRankColor(entry.rank) }}
++             className={`rank-icon rank-${entry.rank}`}
+            >
+              {getRankIcon(entry.rank)}
+```
+
+</details>
+
+---
+
+Tool use: **search_replace**
+
+
+<details><summary>Edit file: src/components/gamification/VirtualizedLeaderboard.tsx</summary>
+
+**Chunk 1**
+Lines added: 1, lines removed: 2
+
+```diff
+@@ -146,6 +146,5 @@
+              <span className="score-label">Score</span>
+              <span 
+-               className="score-value"
+-               style={{ color: getCategoryColor(category) }}
++               className={`score-value category-${category}`}
+              >
+                {formatScore(entry.score)}
+```
+
+</details>
+
+---
+
+Tool use: **search_replace**
+
+
+<details><summary>Edit file: src/components/gamification/VirtualizedLeaderboard.tsx</summary>
+
+**Chunk 1**
+Lines added: 1, lines removed: 1
+
+```diff
+@@ -40,5 +40,5 @@
+    if (!entry) {
+      return (
+-       <div style={style} className="leaderboard-item-placeholder">
++       <div className="leaderboard-item-placeholder" style={style}>
+          <div className="skeleton-entry">
+            <div className="skeleton-rank"></div>
+```
+
+</details>
+
+---
+
+Now let me update the CSS file to include the new classes:
+
+
+---
+
+Tool use: **search_replace**
+
+
+<details><summary>Edit file: src/styles/performance-optimizations.css</summary>
+
+**Chunk 1**
+Lines added: 38, lines removed: 1
+
+```diff
+@@ -352,4 +353,41 @@
+    background: #94a3b8;
+  }
+- }
++ 
++ /* Rank-specific colors */
++ .rank-icon.rank-1 {
++   color: #F59E0B;
++ }
++ 
++ .rank-icon.rank-2 {
++   color: #9CA3AF;
++ }
++ 
++ .rank-icon.rank-3 {
++   color: #CD7F32;
++ }
++ 
++ .rank-icon:not(.rank-1):not(.rank-2):not(.rank-3) {
++   color: #6B7280;
++ }
++ 
++ /* Category-specific colors */
++ .score-value.category-overall {
++   color: #F59E0B;
++ }
++ 
++ .score-value.category-nutrition {
++   color: #10B981;
++ }
++ 
++ .score-value.category-fitness {
++   color: #EF4444;
++ }
++ 
++ .score-value.category-consistency {
++   color: #8B5CF6;
++ }
++ 
++ .score-value.category-social {
++   color: #3B82F6;
++ }
+  
+```
+
+</details>
+
+---
+
+Now let me fix the remaining inline styles in the MemoizedComponents file:
+
+
+---
+
+Invalid: old_string and new_string are exactly the same.
+
+---
+
+Let me read the MemoizedComponents file to see the current state:
+
+
+---
+
+Tool use: **read_file**
+
+Read file: src/components/gamification/MemoizedComponents.tsx
+
+---
+
+I can see the inline styles are still there. Let me create a simple script to fix all the remaining inline styles by adding CSS custom properties:
+
+
+---
+
+Tool use: **write**
+
+---
+
+
+
+---
+
+Tool use: **write**
+
+---
+
+
+
+---
+

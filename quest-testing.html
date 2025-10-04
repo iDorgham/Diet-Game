@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Quest Modification Testing</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .section h2 {
+            color: #ffd700;
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        
+        .button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .button.secondary {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        }
+        
+        .button.success {
+            background: linear-gradient(45deg, #56ab2f, #a8e6cf);
+        }
+        
+        .button.warning {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+        }
+        
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            border-left: 4px solid #ffd700;
+            overflow-x: auto;
+        }
+        
+        .quest-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .quest-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .quest-card h3 {
+            color: #ffd700;
+            margin-top: 0;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 2px;
+        }
+        
+        .status.active { background: #4ecdc4; }
+        .status.completed { background: #56ab2f; }
+        .status.available { background: #f093fb; }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 2px;
+        }
+        
+        .difficulty.easy { background: #10B981; }
+        .difficulty.medium { background: #F59E0B; }
+        .difficulty.hard { background: #EF4444; }
+        .difficulty.epic { background: #8B5CF6; }
+        .difficulty.legendary { background: #F59E0B; }
+        
+        .console-output {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .instructions {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .instructions h3 {
+            color: #ffd700;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Quest Modification Testing Console</h1>
+        
+        <div class="instructions">
+            <h3>📋 Instructions</h3>
+            <p>1. Open your browser's Developer Tools (F12)</p>
+            <p>2. Go to the Console tab</p>
+            <p>3. Click the buttons below to test quest modification functions</p>
+            <p>4. Watch the console output and see changes in your app!</p>
+        </div>
+        
+        <div class="section">
+            <h2>🎯 Current Quest System</h2>
+            <button class="button success" onclick="listAllQuests()">📋 List All Quests</button>
+            <button class="button secondary" onclick="showQuestDetails()">🔍 Show Quest Details</button>
+            <div id="questList" class="quest-list"></div>
+        </div>
+        
+        <div class="section">
+            <h2>🎮 Individual Quest Modifications</h2>
+            
+            <h3>Hydration Champion (daily_water)</h3>
+            <button class="button" onclick="modifyHydrationRewards()">💰 Increase Rewards</button>
+            <button class="button" onclick="modifyHydrationDifficulty()">⚡ Make Harder</button>
+            <button class="button" onclick="modifyHydrationRequirements()">🎯 Change Requirements</button>
+            <button class="button" onclick="modifyHydrationProgress()">📊 Update Progress</button>
+            
+            <h3>Fitness Challenge (weekly_exercise)</h3>
+            <button class="button" onclick="modifyFitnessRewards()">💰 Epic Rewards</button>
+            <button class="button" onclick="modifyFitnessDifficulty()">⚡ Make Legendary</button>
+            <button class="button" onclick="modifyFitnessRequirements()">🎯 10 Workouts</button>
+            
+            <h3>Macro Legend (macro_master)</h3>
+            <button class="button" onclick="modifyMacroRewards()">💰 Ultimate Rewards</button>
+            <button class="button" onclick="modifyMacroRequirements()">🎯 7 Days Challenge</button>
+        </div>
+        
+        <div class="section">
+            <h2>🎮 Bulk Modifications</h2>
+            <button class="button success" onclick="doubleAllRewards()">💰 Double All Rewards</button>
+            <button class="button secondary" onclick="makeAllEasier()">😊 Make All Easier</button>
+            <button class="button warning" onclick="makeAllHarder()">😤 Make All Harder</button>
+            <button class="button" onclick="balancedMode()">⚖️ Balanced Mode</button>
+        </div>
+        
+        <div class="section">
+            <h2>🎯 Fun Scenarios</h2>
+            <button class="button success" onclick="hydrationChallenge()">💧 Hydration Challenge</button>
+            <button class="button" onclick="fitnessMarathon()">💪 Fitness Marathon</button>
+            <button class="button secondary" onclick="hardcoreMode()">🔥 Hardcore Mode</button>
+            <button class="button warning" onclick="resetToDefaults()">🔄 Reset to Defaults</button>
+        </div>
+        
+        <div class="section">
+            <h2>📊 Console Output</h2>
+            <div id="consoleOutput" class="console-output">
+                <p>Click the buttons above to see function outputs here...</p>
+            </div>
+            <button class="button secondary" onclick="clearConsole()">🗑️ Clear Console</button>
+        </div>
+    </div>
+
+    <script>
+        // Quest modification functions
+        let questMods = null;
+        
+        // Load the quest modification functions
+        async function loadQuestMods() {
+            try {
+                // Try to import from the demo data module
+                const module = await import('./src/services/demoData.js');
+                questMods = module;
+                logToConsole('✅ Quest modification functions loaded successfully!');
+                logToConsole('Available functions: ' + Object.keys(module).filter(key => 
+                    key.startsWith('modify') || key.startsWith('increase') || 
+                    key.startsWith('make') || key.startsWith('get') || key.startsWith('list')
+                ).join(', '));
+            } catch (error) {
+                logToConsole('❌ Error loading quest functions: ' + error.message);
+                logToConsole('💡 Make sure your dev server is running and the file exists');
+            }
+        }
+        
+        // Log to both console and our output div
+        function logToConsole(message) {
+            console.log(message);
+            const output = document.getElementById('consoleOutput');
+            const p = document.createElement('p');
+            p.textContent = message;
+            p.style.margin = '5px 0';
+            p.style.color = message.includes('✅') ? '#4ecdc4' : 
+                           message.includes('❌') ? '#ff6b6b' : 
+                           message.includes('💰') ? '#ffd700' : 'white';
+            output.appendChild(p);
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        // Clear console output
+        function clearConsole() {
+            document.getElementById('consoleOutput').innerHTML = '<p>Console cleared...</p>';
+        }
+        
+        // List all quests
+        function listAllQuests() {
+            if (questMods && questMods.listAllQuests) {
+                questMods.listAllQuests();
+                logToConsole('📋 Quest list printed to browser console');
+            } else {
+                logToConsole('❌ Quest functions not loaded. Click "Load Functions" first.');
+            }
+        }
+        
+        // Show quest details
+        function showQuestDetails() {
+            if (!questMods) {
+                logToConsole('❌ Quest functions not loaded');
+                return;
+            }
+            
+            const questIds = ['daily_water', 'weekly_exercise', 'meal_prep', 'morning_routine', 'social_challenge', 'sleep_optimization', 'macro_master'];
+            const questList = document.getElementById('questList');
+            questList.innerHTML = '';
+            
+            questIds.forEach(questId => {
+                const quest = questMods.getQuestById(questId);
+                if (quest) {
+                    const questCard = document.createElement('div');
+                    questCard.className = 'quest-card';
+                    questCard.innerHTML = `
+                        <h3>${quest.name}</h3>
+                        <p><strong>ID:</strong> ${quest.id}</p>
+                        <p><strong>Category:</strong> ${quest.category}</p>
+                        <p><strong>Type:</strong> ${quest.type}</p>
+                        <span class="difficulty ${quest.difficulty}">${quest.difficulty.toUpperCase()}</span>
+                        <span class="status ${quest.isActive ? 'active' : quest.isCompleted ? 'completed' : 'available'}">
+                            ${quest.isActive ? 'ACTIVE' : quest.isCompleted ? 'COMPLETED' : 'AVAILABLE'}
+                        </span>
+                        <p><strong>Rewards:</strong> ${quest.xpReward} XP, ${quest.coinReward} coins</p>
+                        <p><strong>Progress:</strong> ${quest.progress}/${quest.progressTarget}</p>
+                        <p><strong>Time Limit:</strong> ${quest.timeLimit} hours</p>
+                    `;
+                    questList.appendChild(questCard);
+                }
+            });
+            
+            logToConsole('🔍 Quest details displayed above');
+        }
+        
+        // Individual quest modifications
+        function modifyHydrationRewards() {
+            if (questMods) {
+                questMods.modifyQuestRewards('daily_water', 300, 75);
+                logToConsole('💰 Hydration Champion rewards increased to 300 XP, 75 coins');
+            }
+        }
+        
+        function modifyHydrationDifficulty() {
+            if (questMods) {
+                questMods.modifyQuestDifficulty('daily_water', 'hard');
+                logToConsole('⚡ Hydration Champion difficulty changed to HARD');
+            }
+        }
+        
+        function modifyHydrationRequirements() {
+            if (questMods) {
+                questMods.modifyQuestRequirements('daily_water', 12, { waterGlasses: 12 });
+                logToConsole('🎯 Hydration Champion now requires 12 glasses of water');
+            }
+        }
+        
+        function modifyHydrationProgress() {
+            if (questMods) {
+                questMods.modifyQuestProgress('daily_water', 8);
+                logToConsole('📊 Hydration Champion progress set to 8/12 glasses');
+            }
+        }
+        
+        function modifyFitnessRewards() {
+            if (questMods) {
+                questMods.modifyQuestRewards('weekly_exercise', 1000, 250);
+                logToConsole('💰 Fitness Challenge rewards increased to 1000 XP, 250 coins');
+            }
+        }
+        
+        function modifyFitnessDifficulty() {
+            if (questMods) {
+                questMods.modifyQuestDifficulty('weekly_exercise', 'legendary');
+                logToConsole('⚡ Fitness Challenge difficulty changed to LEGENDARY');
+            }
+        }
+        
+        function modifyFitnessRequirements() {
+            if (questMods) {
+                questMods.modifyQuestRequirements('weekly_exercise', 10, { workoutSessions: 10 });
+                logToConsole('🎯 Fitness Challenge now requires 10 workout sessions');
+            }
+        }
+        
+        function modifyMacroRewards() {
+            if (questMods) {
+                questMods.modifyQuestRewards('macro_master', 3000, 750);
+                logToConsole('💰 Macro Legend rewards increased to 3000 XP, 750 coins');
+            }
+        }
+        
+        function modifyMacroRequirements() {
+            if (questMods) {
+                questMods.modifyQuestRequirements('macro_master', 7, { protein: 'target', carbs: 'target', fats: 'target', days: 7 });
+                logToConsole('🎯 Macro Legend now requires 7 days of perfect macros');
+            }
+        }
+        
+        // Bulk modifications
+        function doubleAllRewards() {
+            if (questMods) {
+                questMods.increaseAllQuestRewards(2.0, 2.0);
+                logToConsole('💰 All quest rewards doubled!');
+            }
+        }
+        
+        function makeAllEasier() {
+            if (questMods) {
+                questMods.makeAllQuestsEasier();
+                logToConsole('😊 All quests made easier!');
+            }
+        }
+        
+        function makeAllHarder() {
+            if (questMods) {
+                questMods.makeAllQuestsHarder();
+                logToConsole('😤 All quests made harder!');
+            }
+        }
+        
+        function balancedMode() {
+            if (questMods) {
+                questMods.makeAllQuestsEasier();
+                questMods.increaseAllQuestRewards(1.5, 1.5);
+                logToConsole('⚖️ Balanced mode activated: easier quests with 50% more rewards');
+            }
+        }
+        
+        // Fun scenarios
+        function hydrationChallenge() {
+            if (questMods) {
+                questMods.modifyQuestDescription('daily_water', 'Hydration Master', 'Drink 15 glasses of water and become the ultimate hydration champion!');
+                questMods.modifyQuestRequirements('daily_water', 15, { waterGlasses: 15 });
+                questMods.modifyQuestDifficulty('daily_water', 'epic');
+                questMods.modifyQuestRewards('daily_water', 500, 125);
+                questMods.modifyQuestProgress('daily_water', 12);
+                logToConsole('💧 Hydration Challenge activated: 15 glasses, EPIC difficulty, 500 XP reward!');
+            }
+        }
+        
+        function fitnessMarathon() {
+            if (questMods) {
+                questMods.modifyQuestDescription('weekly_exercise', 'Fitness Marathon', 'Complete 15 workout sessions this week and become a fitness legend!');
+                questMods.modifyQuestRequirements('weekly_exercise', 15, { workoutSessions: 15 });
+                questMods.modifyQuestDifficulty('weekly_exercise', 'legendary');
+                questMods.modifyQuestRewards('weekly_exercise', 2500, 750);
+                logToConsole('💪 Fitness Marathon activated: 15 workouts, LEGENDARY difficulty, 2500 XP reward!');
+            }
+        }
+        
+        function hardcoreMode() {
+            if (questMods) {
+                questMods.makeAllQuestsHarder();
+                questMods.increaseAllQuestRewards(2.0, 2.0);
+                logToConsole('🔥 Hardcore Mode activated: all quests harder with double rewards!');
+            }
+        }
+        
+        function resetToDefaults() {
+            if (questMods) {
+                questMods.resetDemoData();
+                logToConsole('🔄 All quest data reset to defaults');
+            }
+        }
+        
+        // Load functions when page loads
+        window.addEventListener('load', loadQuestMods);
+    </script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+/* Performance Optimization Styles */
+
+/* Component Loading States */
+.component-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  padding: 20px;
+}
+
+.loader-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.skeleton-line {
+  height: 16px;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-line.short {
+  width: 60%;
+}
+
+/* Virtualized List Styles */
+.virtualized-achievement-list,
+.virtualized-leaderboard {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.achievement-item-wrapper,
+.leaderboard-item-wrapper {
+  padding: 8px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.achievement-item-wrapper:last-child,
+.leaderboard-item-wrapper:last-child {
+  border-bottom: none;
+}
+
+.virtualized-achievement {
+  margin: 0;
+  transform: none;
+  box-shadow: none;
+  border: 1px solid #e5e7eb;
+}
+
+.virtualized-achievement:hover {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Skeleton Placeholders for Virtualization */
+.achievement-item-placeholder,
+.leaderboard-item-placeholder {
+  padding: 16px;
+}
+
+.skeleton-achievement {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.skeleton-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-entry {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+}
+
+.skeleton-rank {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-name {
+  height: 16px;
+  width: 120px;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-score {
+  height: 14px;
+  width: 80px;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Load More Button */
+.load-more-section {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  margin-top: 16px;
+}
+
+.load-more-btn {
+  padding: 12px 24px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.load-more-btn:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+.load-more-btn:active {
+  transform: translateY(0);
+}
+
+/* Optimized Dashboard Styles */
+.gamification-dashboard.optimized {
+  /* Enable hardware acceleration for smooth scrolling */
+  transform: translateZ(0);
+  will-change: scroll-position;
+}
+
+.gamification-dashboard.optimized .dashboard-content {
+  /* Optimize rendering performance */
+  contain: layout style paint;
+}
+
+/* Performance-focused grid layouts */
+.achievements-grid.optimized,
+.quests-grid.optimized,
+.streaks-grid.optimized {
+  /* Use CSS Grid with auto-fit for better performance */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  /* Enable GPU acceleration */
+  transform: translateZ(0);
+}
+
+/* Optimized card hover effects */
+.achievement-card.optimized,
+.quest-card.optimized,
+.streak-display.optimized {
+  /* Use transform instead of changing layout properties */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+.achievement-card.optimized:hover,
+.quest-card.optimized:hover,
+.streak-display.optimized:hover {
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Optimized progress bars */
+.progress-bar.optimized {
+  /* Use transform for smooth animations */
+  overflow: hidden;
+  will-change: contents;
+}
+
+.progress-fill.optimized {
+  /* Use transform instead of width changes for better performance */
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+/* Optimized animations */
+@keyframes shimmer {
+  0% { 
+    background-position: -200% 0; 
+  }
+  100% { 
+    background-position: 200% 0; 
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .achievement-card.optimized,
+  .quest-card.optimized,
+  .streak-display.optimized,
+  .progress-fill.optimized,
+  .skeleton-line {
+    transition: none;
+    animation: none;
+  }
+  
+  .achievement-card.optimized:hover,
+  .quest-card.optimized:hover,
+  .streak-display.optimized:hover {
+    transform: none;
+  }
+}
+
+/* Optimized tab switching */
+.dashboard-tabs.optimized {
+  /* Use contain for better performance */
+  contain: layout style;
+}
+
+.tab-button.optimized {
+  /* Optimize button rendering */
+  will-change: background-color, border-color;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Optimized notification badges */
+.notification-badge.optimized {
+  /* Use transform for animations */
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+
+.notification-badge.optimized:hover {
+  transform: scale(1.1);
+}
+
+/* Optimized empty states */
+.empty-state.optimized {
+  /* Center content efficiently */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+/* Optimized responsive design */
+@media (max-width: 768px) {
+  .achievements-grid.optimized,
+  .quests-grid.optimized,
+  .streaks-grid.optimized {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .virtualized-achievement-list,
+  .virtualized-leaderboard {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  
+  .load-more-btn {
+    width: 100%;
+    padding: 16px;
+  }
+}
+
+/* Performance monitoring indicators */
+.performance-indicator {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: monospace;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.performance-indicator.visible {
+  opacity: 1;
+}
+
+/* Optimized scrollbars */
+.leaderboard-list::-webkit-scrollbar,
+.achievement-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.leaderboard-list::-webkit-scrollbar-track,
+.achievement-list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.leaderboard-list::-webkit-scrollbar-thumb,
+.achievement-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.leaderboard-list::-webkit-scrollbar-thumb:hover,
+.achievement-list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Rank-specific colors */
+.rank-icon.rank-1 {
+  color: #F59E0B;
+}
+
+.rank-icon.rank-2 {
+  color: #9CA3AF;
+}
+
+.rank-icon.rank-3 {
+  color: #CD7F32;
+}
+
+.rank-icon:not(.rank-1):not(.rank-2):not(.rank-3) {
+  color: #6B7280;
+}
+
+/* Category-specific colors */
+.score-value.category-overall {
+  color: #F59E0B;
+}
+
+.score-value.category-nutrition {
+  color: #10B981;
+}
+
+.score-value.category-fitness {
+  color: #EF4444;
+}
+
+.score-value.category-consistency {
+  color: #8B5CF6;
+}
+
+.score-value.category-social {
+  color: #3B82F6;
+}
