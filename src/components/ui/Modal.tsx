@@ -294,3 +294,4 @@ export const ModalFooter: React.FC<ModalFooterProps> = ({ children, className })
 );
 
 export default Modal;
+export { Modal };

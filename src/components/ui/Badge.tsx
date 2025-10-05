@@ -355,3 +355,4 @@ export const AchievementBadge: React.FC<AchievementBadgeProps> = ({
 };
 
 export default Badge;
+export { Badge };
