@@ -4,10 +4,10 @@
  */
 
 import { Router, Request, Response } from 'express';
-import { rateLimiter } from '@/middleware/rateLimiter';
-import { asyncHandler } from '@/middleware/errorHandler';
-import { foodDatabaseService } from '@/services/foodDatabaseService';
-import { nutritionApiService } from '@/services/nutritionApiService';
+import { rateLimiter } from '../middleware/rateLimiter';
+import { asyncHandler } from '../middleware/errorHandler';
+import { foodDatabaseService } from '../services/foodDatabaseService';
+import { nutritionApiService } from '../services/nutritionApiService';
 
 const router = Router();
 
@@ -31,7 +31,7 @@ router.get('/search', rateLimiter, asyncHandler(async (req: Request, res: Respon
   const filters = {
     category: category as string,
     brand: brand as string,
-    dietary_restrictions: dietary_restrictions ? (dietary_restrictions as string).split(',') : undefined,
+    dietary_restrictions: dietary_restrictions ? (dietary_restrictions as string).split(',') : [],
     max_calories: max_calories ? parseInt(max_calories as string) : undefined,
     min_protein: min_protein ? parseInt(min_protein as string) : undefined,
     verified_only: verified_only === 'true'
@@ -44,7 +44,7 @@ router.get('/search', rateLimiter, asyncHandler(async (req: Request, res: Respon
     parseInt(limit as string)
   );
 
-  res.json({
+  return res.json({
     success: true,
     data: result,
     timestamp: new Date().toISOString(),
@@ -55,6 +55,15 @@ router.get('/search', rateLimiter, asyncHandler(async (req: Request, res: Respon
 // Get food item details
 router.get('/food/:foodId', rateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const { foodId } = req.params;
+  
+  if (!foodId) {
+    return res.status(400).json({
+      success: false,
+      error: 'Food ID is required',
+      timestamp: new Date().toISOString(),
+      requestId: req.id,
+    });
+  }
   
   const foodItem = await foodDatabaseService.getFoodItemById(foodId);
   
@@ -67,7 +76,7 @@ router.get('/food/:foodId', rateLimiter, asyncHandler(async (req: Request, res: 
     });
   }
 
-  res.json({
+  return res.json({
     success: true,
     data: foodItem,
     timestamp: new Date().toISOString(),
@@ -196,6 +205,15 @@ router.delete('/logs/:logId', rateLimiter, asyncHandler(async (req: Request, res
   const userId = req.user!.id;
   const { logId } = req.params;
   
+  if (!logId) {
+    return res.status(400).json({
+      success: false,
+      error: 'Log ID is required',
+      timestamp: new Date().toISOString(),
+      requestId: req.id,
+    });
+  }
+  
   const deleted = await foodDatabaseService.deleteNutritionLog(logId, userId);
   
   if (!deleted) {
@@ -261,6 +279,15 @@ router.get('/goals', rateLimiter, asyncHandler(async (req: Request, res: Respons
 router.get('/summary/:date', rateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const userId = req.user!.id;
   const { date } = req.params;
+  
+  if (!date) {
+    return res.status(400).json({
+      success: false,
+      error: 'Date parameter is required',
+      timestamp: new Date().toISOString(),
+      requestId: req.id,
+    });
+  }
   
   const summaryDate = new Date(date);
   if (isNaN(summaryDate.getTime())) {
@@ -364,6 +391,15 @@ router.get('/recipes/search', rateLimiter, asyncHandler(async (req: Request, res
 // Get recipe details
 router.get('/recipes/:recipeId', rateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const { recipeId } = req.params;
+  
+  if (!recipeId) {
+    return res.status(400).json({
+      success: false,
+      error: 'Recipe ID is required',
+      timestamp: new Date().toISOString(),
+      requestId: req.id,
+    });
+  }
   
   const recipe = await foodDatabaseService.getRecipeById(recipeId);
   

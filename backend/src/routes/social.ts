@@ -3,14 +3,14 @@
  * Social features and community functionality
  */
 
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { rateLimiter } from '@/middleware/rateLimiter';
 import { asyncHandler } from '@/middleware/errorHandler';
 
 const router = Router();
 
 // Get friends list
-router.get('/friends', rateLimiter, asyncHandler(async (req, res) => {
+router.get('/friends', rateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const userId = req.user!.id;
   
   // TODO: Implement get friends list logic
@@ -27,7 +27,7 @@ router.get('/friends', rateLimiter, asyncHandler(async (req, res) => {
 }));
 
 // Get social feed
-router.get('/feed', rateLimiter, asyncHandler(async (req, res) => {
+router.get('/feed', rateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const userId = req.user!.id;
   
   // TODO: Implement get social feed logic

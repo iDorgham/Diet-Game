@@ -11,11 +11,17 @@ let redisClient = null;
  */
 export async function initializeRedis() {
   try {
+    // Get Redis URL from environment
+    const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379';
+    
+    // Skip Redis initialization if explicitly disabled
+    if (process.env.REDIS_DISABLED === 'true') {
+      logger.warn('⚠️ Redis is disabled via REDIS_DISABLED environment variable');
+      return false;
+    }
+
     const redisConfig = {
-      host: process.env.REDIS_HOST || 'localhost',
-      port: process.env.REDIS_PORT || 6379,
-      password: process.env.REDIS_PASSWORD || undefined,
-      db: process.env.REDIS_DB || 0,
+      url: redisUrl,
       retryDelayOnFailover: 100,
       enableReadyCheck: false,
       maxRetriesPerRequest: null,
@@ -40,15 +46,23 @@ export async function initializeRedis() {
     });
 
     await redisClient.connect();
-    logger.info('Redis cache initialized successfully');
+    logger.info('✅ Redis cache initialized successfully');
     return true;
   } catch (error) {
-    logger.error('Failed to initialize Redis', { error: error.message });
-    // Continue without Redis in development
+    logger.error('❌ Failed to initialize Redis', { error: error.message });
+    
+    // In development mode, continue without Redis
     if (process.env.NODE_ENV === 'development') {
-      logger.warn('Continuing without Redis cache in development mode');
+      logger.warn('⚠️ Continuing without Redis cache in development mode');
+      logger.info('💡 To enable Redis caching:');
+      logger.info('   1. Install Redis: choco install redis-64');
+      logger.info('   2. Start Redis server: redis-server');
+      logger.info('   3. Set REDIS_URL=redis://localhost:6379 in your .env file');
+      logger.info('   4. Or set REDIS_DISABLED=true to disable Redis completely');
       return false;
     }
+    
+    // In production, Redis is required
     throw error;
   }
 }

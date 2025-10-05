@@ -1,0 +1,93 @@
+name: Specification Sync
+
+on:
+  push:
+    paths: 
+      - 'src/**/*'
+      - 'docs/specs/**/*'
+  pull_request:
+    paths:
+      - 'src/**/*'
+      - 'docs/specs/**/*'
+
+jobs:
+  spec-sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Validate specifications
+        run: npm run validate:specs
+        
+      - name: Generate specification updates
+        run: npm run generate:spec-updates -- --dry-run
+        
+      - name: Check for conflicts
+        run: |
+          if [ -f "spec-updates.json" ]; then
+            echo "Specification updates generated:"
+            cat spec-updates.json | jq '.[] | {spec: .specPath, changes: .changes | length, conflicts: .metadata.conflicts | length}'
+          else
+            echo "No specification updates needed"
+          fi
+          
+      - name: Upload specification updates
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: spec-updates
+          path: |
+            spec-updates.json
+            quality-report.json
+          retention-days: 7
+          
+      - name: Comment on PR with updates
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            
+            try {
+              const updates = JSON.parse(fs.readFileSync('spec-updates.json', 'utf8'));
+              
+              if (updates.length > 0) {
+                let comment = '## 📋 Specification Updates Generated\n\n';
+                comment += 'The following specification updates have been generated based on code changes:\n\n';
+                
+                for (const update of updates) {
+                  comment += `### ${update.specPath}\n`;
+                  comment += `- **Type**: ${update.type}\n`;
+                  comment += `- **Confidence**: ${(update.confidence * 100).toFixed(1)}%\n`;
+                  comment += `- **Changes**: ${update.changes.length}\n`;
+                  
+                  if (update.metadata.conflicts.length > 0) {
+                    comment += `- **⚠️ Conflicts**: ${update.metadata.conflicts.length}\n`;
+                  }
+                  
+                  comment += '\n';
+                }
+                
+                comment += '> **Note**: These are automatically generated updates. Please review before applying.\n';
+                
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: comment
+                });
+              }
+            } catch (error) {
+              console.log('No specification updates to comment on');
+            }

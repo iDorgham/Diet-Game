@@ -3,6 +3,13 @@
 -- Created: Week 3 - Nutrition Database Integration
 
 -- =============================================
+-- 0. EXTENSIONS
+-- =============================================
+
+-- Enable trigram extension for text search
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
+-- =============================================
 -- 1. SAMPLE FOOD ITEMS
 -- =============================================
 
@@ -15,115 +22,115 @@ INSERT INTO food_items (
 ('Apple', NULL, 'Fruits', 'Fresh Fruits', 'Fresh red apple', 
  '{"calories": 52, "protein": 0.3, "carbs": 13.8, "fat": 0.2, "fiber": 2.4, "sugar": 10.4, "sodium": 1}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Apple"]', '[]', '["vegan", "gluten-free", "dairy-free"]',
+ ARRAY['Apple'], ARRAY[]::text[], ARRAY['vegan', 'gluten-free', 'dairy-free'],
  'USDA', true, 0.95),
 
 ('Banana', NULL, 'Fruits', 'Fresh Fruits', 'Fresh yellow banana',
  '{"calories": 89, "protein": 1.1, "carbs": 22.8, "fat": 0.3, "fiber": 2.6, "sugar": 12.2, "sodium": 1}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Banana"]', '[]', '["vegan", "gluten-free", "dairy-free"]',
+ ARRAY['Banana'], ARRAY[]::text[], ARRAY['vegan', 'gluten-free', 'dairy-free'],
  'USDA', true, 0.95),
 
 ('Orange', NULL, 'Fruits', 'Citrus Fruits', 'Fresh orange',
  '{"calories": 47, "protein": 0.9, "carbs": 11.8, "fat": 0.1, "fiber": 2.4, "sugar": 9.4, "sodium": 0}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Orange"]', '[]', '["vegan", "gluten-free", "dairy-free"]',
+ ARRAY['Orange'], ARRAY[]::text[], ARRAY['vegan', 'gluten-free', 'dairy-free'],
  'USDA', true, 0.95),
 
 -- Vegetables
 ('Broccoli', NULL, 'Vegetables', 'Cruciferous', 'Fresh broccoli florets',
  '{"calories": 34, "protein": 2.8, "carbs": 6.6, "fat": 0.4, "fiber": 2.6, "sugar": 1.5, "sodium": 33}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Broccoli"]', '[]', '["vegan", "gluten-free", "dairy-free", "keto"]',
+ ARRAY['Broccoli'], ARRAY[]::text[], ARRAY['vegan', 'gluten-free', 'dairy-free', 'keto'],
  'USDA', true, 0.95),
 
 ('Carrot', NULL, 'Vegetables', 'Root Vegetables', 'Fresh orange carrot',
  '{"calories": 41, "protein": 0.9, "carbs": 9.6, "fat": 0.2, "fiber": 2.8, "sugar": 4.7, "sodium": 69}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Carrot"]', '[]', '["vegan", "gluten-free", "dairy-free"]',
+ ARRAY['Carrot'], ARRAY[]::text[], ARRAY['vegan', 'gluten-free', 'dairy-free'],
  'USDA', true, 0.95),
 
 ('Spinach', NULL, 'Vegetables', 'Leafy Greens', 'Fresh spinach leaves',
  '{"calories": 23, "protein": 2.9, "carbs": 3.6, "fat": 0.4, "fiber": 2.2, "sugar": 0.4, "sodium": 79}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Spinach"]', '[]', '["vegan", "gluten-free", "dairy-free", "keto"]',
+ ARRAY['Spinach'], ARRAY[]::text[], ARRAY['vegan', 'gluten-free', 'dairy-free', 'keto'],
  'USDA', true, 0.95),
 
 -- Grains
 ('Brown Rice', NULL, 'Grains & Cereals', 'Whole Grains', 'Cooked brown rice',
  '{"calories": 111, "protein": 2.6, "carbs": 23.0, "fat": 0.9, "fiber": 1.8, "sugar": 0.4, "sodium": 5}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Brown Rice"]', '[]', '["vegan", "gluten-free", "dairy-free"]',
+ ARRAY['Brown Rice'], ARRAY[]::text[], ARRAY['vegan', 'gluten-free', 'dairy-free'],
  'USDA', true, 0.95),
 
 ('Quinoa', NULL, 'Grains & Cereals', 'Pseudo-grains', 'Cooked quinoa',
  '{"calories": 120, "protein": 4.4, "carbs": 22.0, "fat": 1.9, "fiber": 2.8, "sugar": 0.9, "sodium": 7}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Quinoa"]', '[]', '["vegan", "gluten-free", "dairy-free"]',
+ ARRAY[''], ARRAY[]::text[], ARRAY[''],
  'USDA', true, 0.95),
 
 ('Whole Wheat Bread', 'Generic', 'Grains & Cereals', 'Bread', 'Whole wheat bread slice',
  '{"calories": 247, "protein": 13.4, "carbs": 41.3, "fat": 4.2, "fiber": 6.0, "sugar": 4.3, "sodium": 681}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Whole Wheat Flour", "Water", "Yeast", "Salt"]', '["gluten"]', '["vegan", "dairy-free"]',
+ ARRAY[''], ARRAY[''], ARRAY[''],
  'USDA', true, 0.95),
 
 -- Proteins
 ('Chicken Breast', NULL, 'Meat & Seafood', 'Poultry', 'Skinless, boneless chicken breast',
  '{"calories": 165, "protein": 31.0, "carbs": 0, "fat": 3.6, "fiber": 0, "sugar": 0, "sodium": 74}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Chicken Breast"]', '[]', '["gluten-free", "dairy-free", "keto"]',
+ ARRAY[''], ARRAY[]::text[], ARRAY[''],
  'USDA', true, 0.95),
 
 ('Salmon', NULL, 'Meat & Seafood', 'Fish', 'Atlantic salmon fillet',
  '{"calories": 208, "protein": 25.4, "carbs": 0, "fat": 12.4, "fiber": 0, "sugar": 0, "sodium": 44}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Salmon"]', '["fish"]', '["gluten-free", "dairy-free", "keto"]',
+ ARRAY[''], ARRAY[''], ARRAY[''],
  'USDA', true, 0.95),
 
 ('Eggs', NULL, 'Dairy & Eggs', 'Eggs', 'Large chicken eggs',
  '{"calories": 155, "protein": 13.0, "carbs": 1.1, "fat": 11.0, "fiber": 0, "sugar": 1.1, "sodium": 124}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Eggs"]', '["eggs"]', '["gluten-free", "dairy-free", "keto"]',
+ ARRAY[''], ARRAY[''], ARRAY[''],
  'USDA', true, 0.95),
 
 -- Dairy
 ('Greek Yogurt', 'Generic', 'Dairy & Eggs', 'Yogurt', 'Plain Greek yogurt',
  '{"calories": 59, "protein": 10.0, "carbs": 3.6, "fat": 0.4, "fiber": 0, "sugar": 3.6, "sodium": 36}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Milk", "Live Cultures"]', '["dairy"]', '["gluten-free"]',
+ ARRAY[''], ARRAY[''], ARRAY[''],
  'USDA', true, 0.95),
 
 ('Cheddar Cheese', 'Generic', 'Dairy & Eggs', 'Cheese', 'Sharp cheddar cheese',
  '{"calories": 403, "protein": 25.0, "carbs": 1.3, "fat": 33.1, "fiber": 0, "sugar": 0.5, "sodium": 621}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Milk", "Salt", "Enzymes"]', '["dairy"]', '["gluten-free", "keto"]',
+ ARRAY[''], ARRAY[''], ARRAY[''],
  'USDA', true, 0.95),
 
 -- Nuts & Seeds
 ('Almonds', NULL, 'Nuts & Seeds', 'Tree Nuts', 'Raw almonds',
  '{"calories": 579, "protein": 21.2, "carbs": 21.6, "fat": 49.9, "fiber": 12.5, "sugar": 4.4, "sodium": 1}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Almonds"]', '["tree-nuts"]', '["vegan", "gluten-free", "dairy-free", "keto"]',
+ ARRAY[''], ARRAY[''], ARRAY[''],
  'USDA', true, 0.95),
 
 ('Chia Seeds', NULL, 'Nuts & Seeds', 'Seeds', 'Dried chia seeds',
  '{"calories": 486, "protein": 16.5, "carbs": 42.1, "fat": 30.7, "fiber": 34.4, "sugar": 0, "sodium": 16}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Chia Seeds"]', '[]', '["vegan", "gluten-free", "dairy-free", "keto"]',
+ ARRAY[''], ARRAY[]::text[], ARRAY[''],
  'USDA', true, 0.95),
 
 -- Fats & Oils
 ('Olive Oil', 'Extra Virgin', 'Fats & Oils', 'Oils', 'Extra virgin olive oil',
  '{"calories": 884, "protein": 0, "carbs": 0, "fat": 100, "fiber": 0, "sugar": 0, "sodium": 2}',
  '{"amount": 100, "unit": "ml", "grams": 100}',
- '["Olives"]', '[]', '["vegan", "gluten-free", "dairy-free", "keto"]',
+ ARRAY[''], ARRAY[]::text[], ARRAY[''],
  'USDA', true, 0.95),
 
 ('Avocado', NULL, 'Fruits', 'Tropical Fruits', 'Fresh avocado',
  '{"calories": 160, "protein": 2.0, "carbs": 8.5, "fat": 14.7, "fiber": 6.7, "sugar": 0.7, "sodium": 7}',
  '{"amount": 100, "unit": "g", "grams": 100}',
- '["Avocado"]', '[]', '["vegan", "gluten-free", "dairy-free", "keto"]',
+ ARRAY[''], ARRAY[]::text[], ARRAY[''],
  'USDA', true, 0.95);
 
 -- =============================================
@@ -163,8 +170,8 @@ INSERT INTO recipes (
         {"step_number": 6, "instruction": "Garnish with fresh herbs and serve", "duration": 1}
     ]',
     '{"calories": 420, "protein": 16, "carbs": 52, "fat": 18, "fiber": 8, "sugar": 6, "sodium": 680}',
-    '["healthy", "vegetarian", "mediterranean", "quinoa", "salad"]',
-    '[]',
+    ARRAY[''],
+    ARRAY[]::text[],
     4.5, 23, 'USER', true, true
 ),
 (
@@ -195,8 +202,8 @@ INSERT INTO recipes (
         {"step_number": 6, "instruction": "Serve salmon over roasted vegetables, garnished with dill", "duration": 2}
     ]',
     '{"calories": 380, "protein": 35, "carbs": 12, "fat": 22, "fiber": 4, "sugar": 6, "sodium": 520}',
-    '["healthy", "gluten-free", "keto", "salmon", "roasted"]',
-    '[]',
+    ARRAY[''],
+    ARRAY[]::text[],
     4.8, 45, 'USER', true, true
 ),
 (
@@ -225,8 +232,8 @@ INSERT INTO recipes (
         {"step_number": 5, "instruction": "Serve immediately", "duration": 1}
     ]',
     '{"calories": 320, "protein": 18, "carbs": 45, "fat": 8, "fiber": 12, "sugar": 28, "sodium": 180}',
-    '["healthy", "vegetarian", "smoothie", "breakfast", "green"]',
-    '[]',
+    ARRAY[''],
+    ARRAY[]::text[],
     4.3, 67, 'USER', true, true
 ),
 (
@@ -256,8 +263,8 @@ INSERT INTO recipes (
         {"step_number": 6, "instruction": "Drizzle with lemon juice and serve", "duration": 1}
     ]',
     '{"calories": 450, "protein": 42, "carbs": 8, "fat": 28, "fiber": 3, "sugar": 4, "sodium": 890}',
-    '["keto", "low-carb", "gluten-free", "caesar", "chicken"]',
-    '[]',
+    ARRAY[''],
+    ARRAY[]::text[],
     4.6, 34, 'USER', true, true
 );
 

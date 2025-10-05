@@ -48,12 +48,12 @@ export interface FoodItem {
 }
 
 export interface SearchFilters {
-  category?: string;
-  brand?: string;
-  dietary_restrictions?: string[];
-  max_calories?: number;
-  min_protein?: number;
-  verified_only?: boolean;
+  category?: string | undefined;
+  brand?: string | undefined;
+  dietary_restrictions?: string[] | undefined;
+  max_calories?: number | undefined;
+  min_protein?: number | undefined;
+  verified_only?: boolean | undefined;
 }
 
 export interface SearchResult {
@@ -157,7 +157,7 @@ class USDAService {
         unit: 'g',
         grams: 100
       },
-      ingredients: data.ingredients ? [data.ingredients] : undefined,
+      ingredients: data.ingredients ? [data.ingredients] : [],
       source: 'USDA' as const,
       verified: true,
       confidence_score: 0.95
@@ -555,7 +555,15 @@ export class NutritionApiService {
    * Get detailed food information by ID
    */
   async getFoodDetails(foodId: string): Promise<FoodItem | null> {
+    if (!foodId) {
+      return null;
+    }
+    
     const [source, id] = foodId.split('_');
+    
+    if (!id) {
+      return null;
+    }
 
     switch (source) {
       case 'usda':

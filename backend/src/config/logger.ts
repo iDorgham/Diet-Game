@@ -3,8 +3,8 @@
  * Winston-based logging setup with multiple transports
  */
 
-import winston from 'winston';
-import path from 'path';
+import * as winston from 'winston';
+import * as path from 'path';
 import { config } from './environment';
 
 // Define log levels
@@ -29,14 +29,14 @@ const colors = {
 winston.addColors(colors);
 
 // Define which transports the logger must use
-const transports = [
+const transports: any[] = [
   // Console transport
   new winston.transports.Console({
     format: winston.format.combine(
       winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
       winston.format.colorize({ all: true }),
       winston.format.printf(
-        (info) => `${info.timestamp} ${info.level}: ${info.message}`
+        (info: any) => `${info.timestamp} ${info.level}: ${info.message}`
       )
     ),
   }),
@@ -56,8 +56,8 @@ if (config.nodeEnv !== 'test') {
         winston.format.errors({ stack: true }),
         winston.format.json()
       ),
-      maxsize: config.logging.maxSize,
-      maxFiles: config.logging.maxFiles,
+      maxsize: parseInt(config.logging.maxSize),
+      maxFiles: parseInt(config.logging.maxFiles),
     }),
     
     // File transport for error logs only
@@ -69,8 +69,8 @@ if (config.nodeEnv !== 'test') {
         winston.format.errors({ stack: true }),
         winston.format.json()
       ),
-      maxsize: config.logging.maxSize,
-      maxFiles: config.logging.maxFiles,
+      maxsize: parseInt(config.logging.maxSize),
+      maxFiles: parseInt(config.logging.maxFiles),
     })
   );
 }

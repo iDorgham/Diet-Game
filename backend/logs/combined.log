@@ -1,0 +1,2 @@
+{"duration":"50ms","error":"password authentication failed for user \"postgres\"","level":"\u001b[31merror\u001b[39m","message":"\u001b[31mDatabase query failed\u001b[39m","query":"-- Social Features Database Schema\r\n-- Sprint 9-10: Social Features APIs - Day 1 Task 1.1\r\n\r\n-- Frie...","timestamp":"2025-10-05 04:39:00:390"}
+{"level":"\u001b[32minfo\u001b[39m","message":"\u001b[32mAuto-moderation rules initialized\u001b[39m","ruleCount":3,"timestamp":"2025-10-05 14:40:59:4059"}

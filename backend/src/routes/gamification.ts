@@ -3,7 +3,7 @@
  * API endpoints for the gamification system
  */
 
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { validateAuth } from '@/middleware/auth';
 import { rateLimiter } from '@/middleware/rateLimiter';
 import { asyncHandler } from '@/middleware/errorHandler';
@@ -15,7 +15,7 @@ const router = Router();
 router.use(validateAuth);
 
 // XP System Routes
-router.get('/progress', rateLimiter, asyncHandler(async (req, res) => {
+router.get('/progress', rateLimiter, asyncHandler(async (req: Request, res: Response) => {
   // Get user progress
   const userId = req.user!.id;
   
@@ -42,7 +42,7 @@ const awardXPSchema = z.object({
   description: z.string().optional(),
 });
 
-router.post('/xp', rateLimiter, asyncHandler(async (req, res) => {
+router.post('/xp', rateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const userId = req.user!.id;
   const { amount, source, description } = awardXPSchema.parse(req.body);
   
@@ -62,7 +62,7 @@ router.post('/xp', rateLimiter, asyncHandler(async (req, res) => {
 }));
 
 // Level up endpoint
-router.post('/level-up', rateLimiter, asyncHandler(async (req, res) => {
+router.post('/level-up', rateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const userId = req.user!.id;
   
   // TODO: Implement level up logic
@@ -83,7 +83,7 @@ router.post('/level-up', rateLimiter, asyncHandler(async (req, res) => {
 }));
 
 // Get user level
-router.get('/level', rateLimiter, asyncHandler(async (req, res) => {
+router.get('/level', rateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const userId = req.user!.id;
   
   // TODO: Implement get user level logic

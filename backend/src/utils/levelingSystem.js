@@ -6,7 +6,7 @@ import { logger } from './logger.js';
 export class LevelingSystem {
   
   // XP requirements for each level (progressive scaling)
-  static readonly LEVEL_XP_REQUIREMENTS = [
+  static LEVEL_XP_REQUIREMENTS = [
     0,      // Level 1 (starting level)
     100,    // Level 2
     250,    // Level 3
@@ -110,7 +110,7 @@ export class LevelingSystem {
   ];
 
   // Level titles and special rewards
-  static readonly LEVEL_TITLES = {
+  static LEVEL_TITLES = {
     1: 'Novice',
     5: 'Apprentice',
     10: 'Journeyman',
@@ -128,7 +128,7 @@ export class LevelingSystem {
   };
 
   // Feature unlocks by level
-  static readonly FEATURE_UNLOCKS = {
+  static FEATURE_UNLOCKS = {
     5: ['advanced_quests', 'social_features'],
     10: ['leaderboards', 'achievement_gallery'],
     15: ['skill_trees', 'specialization'],

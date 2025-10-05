@@ -3,7 +3,7 @@
  * Centralized configuration management for the Diet Game API
  */
 
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 
 // Load environment variables
 dotenv.config();
@@ -141,7 +141,7 @@ const config: Config = {
     url: process.env.REDIS_URL || 'redis://localhost:6379',
     host: process.env.REDIS_HOST || 'localhost',
     port: parseInt(process.env.REDIS_PORT || '6379', 10),
-    password: process.env.REDIS_PASSWORD,
+    ...(process.env.REDIS_PASSWORD && { password: process.env.REDIS_PASSWORD }),
   },
   
   jwt: {
@@ -218,7 +218,7 @@ const config: Config = {
   
   monitoring: {
     sentry: {
-      dsn: process.env.SENTRY_DSN,
+      ...(process.env.SENTRY_DSN && { dsn: process.env.SENTRY_DSN }),
     },
     prometheus: {
       port: parseInt(process.env.PROMETHEUS_PORT || '9090', 10),

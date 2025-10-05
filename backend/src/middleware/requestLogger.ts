@@ -4,8 +4,8 @@
  */
 
 import { Request, Response, NextFunction } from 'express';
-import { logger } from '@/config/logger';
-import { config } from '@/config/environment';
+import { logger } from '../config/logger';
+import { config } from '../config/environment';
 
 export const requestLogger = (req: Request, res: Response, next: NextFunction): void => {
   const startTime = Date.now();
@@ -23,7 +23,7 @@ export const requestLogger = (req: Request, res: Response, next: NextFunction): 
 
   // Override res.end to log response
   const originalEnd = res.end;
-  res.end = function(chunk?: any, encoding?: any) {
+  res.end = function(chunk?: any, encoding?: any): Response {
     const duration = Date.now() - startTime;
     
     // Log request completion
@@ -65,7 +65,7 @@ export const requestLogger = (req: Request, res: Response, next: NextFunction): 
     }
 
     // Call original end method
-    originalEnd.call(this, chunk, encoding);
+    return originalEnd.call(this, chunk, encoding);
   };
 
   next();

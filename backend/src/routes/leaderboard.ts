@@ -3,14 +3,14 @@
  * Leaderboard and ranking system
  */
 
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { rateLimiter } from '@/middleware/rateLimiter';
 import { asyncHandler } from '@/middleware/errorHandler';
 
 const router = Router();
 
 // Get leaderboard
-router.get('/', rateLimiter, asyncHandler(async (req, res) => {
+router.get('/', rateLimiter, asyncHandler(async (req: Request, res: Response) => {
   // TODO: Implement get leaderboard logic
   res.json({
     success: true,
@@ -24,7 +24,7 @@ router.get('/', rateLimiter, asyncHandler(async (req, res) => {
 }));
 
 // Get user ranking
-router.get('/user', rateLimiter, asyncHandler(async (req, res) => {
+router.get('/user', rateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const userId = req.user!.id;
   
   // TODO: Implement get user ranking logic

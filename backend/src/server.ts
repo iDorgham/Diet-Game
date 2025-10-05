@@ -18,32 +18,37 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
 // Import configuration
-import { config } from '@/config/environment';
-import { logger } from '@/config/logger';
+import { config } from './config/environment.js';
+import { logger } from './config/logger.js';
 
 // Import middleware
-import { errorHandler } from '@/middleware/errorHandler';
-import { requestLogger } from '@/middleware/requestLogger';
-import { validateAuth } from '@/middleware/auth';
-import { rateLimiter } from '@/middleware/rateLimiter';
-import { corsOptions } from '@/config/cors';
+import { errorHandler } from './middleware/errorHandler.js';
+import { requestLogger } from './middleware/requestLogger.js';
+import { validateAuth } from './middleware/auth.js';
+import { rateLimiter, authRateLimiter, aiRateLimiter, uploadRateLimiter } from './middleware/rateLimiter.js';
+import { corsOptions } from './config/cors.js';
+import { securityValidation, sanitizeInput, validateNoSQLInjection, validateSecurityHeaders } from './middleware/validation.js';
+import { gdprCompliance, requireConsent } from './middleware/gdpr.js';
+// import { securityAudit, auditAuthentication, auditAuthorization, detectSuspiciousActivity } from './middleware/securityAudit.js';
+import { securityConfig, securityHeaders } from './config/security.js';
 
 // Import routes
-import authRoutes from '@/routes/auth';
-import userRoutes from '@/routes/users';
-import gamificationRoutes from '@/routes/gamification';
-import achievementRoutes from '@/routes/achievements';
-import questRoutes from '@/routes/quests';
-import leaderboardRoutes from '@/routes/leaderboard';
-import nutritionRoutes from '@/routes/nutrition';
-import aiCoachRoutes from '@/routes/ai-coach';
-import socialRoutes from '@/routes/social';
+import authRoutes from './routes/auth.js';
+import userRoutes from './routes/users.js';
+import gamificationRoutes from './routes/gamification.js';
+import achievementRoutes from './routes/achievements.js';
+import questRoutes from './routes/quests.js';
+import leaderboardRoutes from './routes/leaderboard.js';
+import nutritionRoutes from './routes/nutrition.js';
+import aiCoachRoutes from './routes/ai-coach.js';
+import socialRoutes from './routes/social.js';
+import securityRoutes from './routes/security.js';
 
 // Import services
-import { initializeDatabase } from '@/database/connection';
-import { initializeRedis } from '@/services/cache';
-import { initializeWebSocket } from '@/services/websocket';
-import { initializeSentry } from '@/config/sentry';
+import { initializeDatabase } from './database/connection.js';
+import { initializeRedis } from './services/cache.js';
+import { initializeWebSocket } from './services/websocket.js';
+import { initializeSentry } from './config/sentry.js';
 
 // Load environment variables
 dotenv.config();
@@ -53,6 +58,7 @@ class DietGameServer {
   private server: HttpServer;
   private io: SocketIOServer;
   private port: number;
+  private swaggerSpecs: any;
 
   constructor() {
     this.app = express();
@@ -73,36 +79,52 @@ class DietGameServer {
   }
 
   private initializeMiddleware(): void {
-    // Security middleware
+    // Enhanced security middleware with comprehensive protection
     this.app.use(helmet({
-      contentSecurityPolicy: {
-        directives: {
-          defaultSrc: ["'self'"],
-          styleSrc: ["'self'", "'unsafe-inline'"],
-          scriptSrc: ["'self'"],
-          imgSrc: ["'self'", "data:", "https:"],
-          connectSrc: ["'self'", "ws:", "wss:"],
-        },
-      },
-      crossOriginEmbedderPolicy: false,
+      contentSecurityPolicy: securityConfig.helmet.contentSecurityPolicy,
+      crossOriginEmbedderPolicy: securityConfig.helmet.crossOriginEmbedderPolicy,
+      hsts: securityConfig.helmet.hsts,
     }));
+
+    // Add custom security headers
+    this.app.use((req: Request, res: Response, next: NextFunction) => {
+      Object.entries(securityHeaders).forEach(([key, value]) => {
+        res.setHeader(key, value);
+      });
+      next();
+    });
 
     // CORS middleware
     this.app.use(cors(corsOptions));
 
-    // Rate limiting
-    this.app.use('/api/', rateLimiter);
+    // GDPR compliance middleware
+    this.app.use(gdprCompliance);
 
-    // Body parsing middleware
+    // Security audit logging
+    // this.app.use(securityAudit);
+
+    // Comprehensive input validation and sanitization
+    this.app.use(securityValidation);
+
+    // Suspicious activity detection
+    // this.app.use(detectSuspiciousActivity);
+
+    // Rate limiting with different tiers
+    this.app.use('/api/', rateLimiter);
+    this.app.use('/api/v1/auth/', authRateLimiter);
+    this.app.use('/api/v1/ai-coach/', aiRateLimiter);
+    this.app.use('/api/v1/upload/', uploadRateLimiter);
+
+    // Body parsing middleware with security
     this.app.use(express.json({ 
-      limit: config.upload.maxFileSize,
+      limit: securityConfig.fileUpload.maxSize,
       verify: (req, res, buf) => {
         req.rawBody = buf;
       }
     }));
     this.app.use(express.urlencoded({ 
       extended: true, 
-      limit: config.upload.maxFileSize 
+      limit: securityConfig.fileUpload.maxSize 
     }));
 
     // Compression middleware
@@ -120,6 +142,10 @@ class DietGameServer {
       res.setHeader('X-Request-ID', req.id);
       next();
     });
+
+    // Authentication and authorization audit
+    // this.app.use(auditAuthentication);
+    // this.app.use(auditAuthorization);
   }
 
   private initializeRoutes(): void {
@@ -136,6 +162,7 @@ class DietGameServer {
     this.app.use('/api/v1/nutrition', validateAuth, nutritionRoutes);
     this.app.use('/api/v1/ai-coach', validateAuth, aiCoachRoutes);
     this.app.use('/api/v1/social', validateAuth, socialRoutes);
+    this.app.use('/api/v1/security', securityRoutes);
 
     // API documentation
     this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(this.getSwaggerSpecs()));
@@ -223,7 +250,7 @@ class DietGameServer {
   private async initializeServices(): Promise<void> {
     try {
       // Initialize Sentry for error tracking
-      if (config.sentry.dsn) {
+      if (config.monitoring.sentry.dsn) {
         initializeSentry();
         logger.info('✅ Sentry initialized');
       }

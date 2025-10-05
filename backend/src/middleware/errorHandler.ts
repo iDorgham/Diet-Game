@@ -4,8 +4,8 @@
  */
 
 import { Request, Response, NextFunction } from 'express';
-import { logger } from '@/config/logger';
-import { config } from '@/config/environment';
+import { logger } from '../config/logger.js';
+import { config } from '../config/environment.js';
 
 export interface ApiError extends Error {
   statusCode?: number;

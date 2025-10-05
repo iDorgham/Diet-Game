@@ -1,4 +1,14 @@
 # Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
+.clinerules/byterover-rules.md
+.kilocode/rules/byterover-rules.md
+.roo/rules/byterover-rules.md
+.windsurf/rules/byterover-rules.md
+.cursor/rules/byterover-rules.mdc
+.kiro/steering/byterover-rules.md
+.qoder/rules/byterover-rules.md
+.augment/rules/byterover-rules.md
+node_modules
+node_modules
 
 # Don't index SpecStory auto-save files, but allow explicit context inclusion via @ references
 .specstory/**
@@ -8,7 +18,12 @@
 .spec-kit/**
 .specify/**
 .playwright-mcp/**
+.vs/**
 
 # FILES TO IGNORE
 .cursorindexingignore
+.cursorignore
+.gitignore
 .env
+.firebaserc
+cursor-rules.md

@@ -17,6 +17,9 @@ import userRoutes from './routes/users.js';
 import achievementRoutes from './routes/achievements.js';
 import questRoutes from './routes/quests.js';
 import leaderboardRoutes from './routes/leaderboard.js';
+import socialRoutes from './routes/social.js';
+import socialRecommendationRoutes from './routes/socialRecommendations.js';
+import enhancedRecommendationRoutes from './routes/enhancedRecommendations.js';
 
 // Import middleware
 import { errorHandler } from './middleware/errorHandler.js';
@@ -27,6 +30,15 @@ import { validateAuth } from './middleware/auth.js';
 import { initializeDatabase } from './database/connection.js';
 import { initializeRedis } from './services/cache.js';
 import { initializeWebSocket } from './services/websocket.js';
+
+// Import advanced caching and performance services
+import { advancedCachingService } from './services/advancedCachingService.js';
+import { 
+  requestOptimization, 
+  responseCompression, 
+  advancedCaching, 
+  connectionPooling 
+} from './middleware/advancedPerformanceMiddleware.js';
 
 // Load environment variables
 dotenv.config();
@@ -80,8 +92,17 @@ app.use('/api/', limiter);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Compression middleware
-app.use(compression());
+// Advanced performance middleware
+app.use(requestOptimization());
+app.use(responseCompression());
+app.use(connectionPooling());
+
+// Advanced caching middleware for API routes
+app.use('/api/', advancedCaching({
+  ttl: 300, // 5 minutes default
+  allowAuthenticated: true,
+  vary: ['Accept-Encoding', 'Authorization']
+}));
 
 // Logging middleware
 app.use(morgan('combined'));
@@ -98,12 +119,66 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Advanced cache health check endpoint
+app.get('/health/cache', async (req, res) => {
+  try {
+    const cacheHealth = await advancedCachingService.healthCheck();
+    const cacheStats = advancedCachingService.getCacheStats();
+    
+    res.status(200).json({
+      status: 'healthy',
+      cache: cacheHealth,
+      stats: cacheStats,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'unhealthy',
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Cache warming endpoint
+app.post('/admin/cache/warm', async (req, res) => {
+  try {
+    const warmingStrategies = {
+      user_recommendations: { 
+        userIds: [1, 2, 3], 
+        recommendationTypes: ['friends', 'teams'] 
+      },
+      leaderboard_data: { 
+        leaderboardTypes: ['global', 'team'] 
+      }
+    };
+    
+    const warmed = await advancedCachingService.warmCache(warmingStrategies);
+    
+    res.status(200).json({
+      success: true,
+      warmed,
+      strategies: Object.keys(warmingStrategies),
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
 // API routes
 app.use('/api/gamification', gamificationRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/achievements', achievementRoutes);
 app.use('/api/quests', questRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
+app.use('/api/social', socialRoutes);
+app.use('/api/social/recommendations', socialRecommendationRoutes);
+app.use('/api/enhanced-recommendations', enhancedRecommendationRoutes);
 
 // WebSocket initialization
 initializeWebSocket(io);
@@ -148,12 +223,35 @@ async function startServer() {
     await initializeRedis();
     console.log('✅ Redis cache connected successfully');
 
+    // Initialize advanced caching service
+    console.log('🔄 Initializing advanced caching service...');
+    await advancedCachingService.initializeCluster();
+    console.log('✅ Advanced caching service initialized');
+
+    // Warm cache with frequently accessed data
+    console.log('🔥 Warming cache with initial data...');
+    const warmingStrategies = {
+      user_recommendations: { 
+        userIds: [1, 2, 3], 
+        recommendationTypes: ['friends', 'teams'] 
+      },
+      leaderboard_data: { 
+        leaderboardTypes: ['global', 'team'] 
+      }
+    };
+    
+    const warmed = await advancedCachingService.warmCache(warmingStrategies);
+    console.log(`✅ Cache warmed with ${warmed} entries`);
+
     // Start HTTP server
     server.listen(PORT, () => {
       console.log(`🚀 Gamification API server running on port ${PORT}`);
       console.log(`📊 Health check: http://localhost:${PORT}/health`);
+      console.log(`🗄️ Cache health: http://localhost:${PORT}/health/cache`);
+      console.log(`🔥 Cache warming: POST http://localhost:${PORT}/admin/cache/warm`);
       console.log(`🎮 Gamification API: http://localhost:${PORT}/api/gamification`);
       console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`⚡ Advanced caching: ENABLED`);
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error);

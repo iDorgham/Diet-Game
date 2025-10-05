@@ -3,14 +3,14 @@
  * User profile and account management
  */
 
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { rateLimiter } from '@/middleware/rateLimiter';
 import { asyncHandler } from '@/middleware/errorHandler';
 
 const router = Router();
 
 // Get user profile
-router.get('/profile', rateLimiter, asyncHandler(async (req, res) => {
+router.get('/profile', rateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const userId = req.user!.id;
   
   // TODO: Implement get user profile logic
@@ -29,7 +29,7 @@ router.get('/profile', rateLimiter, asyncHandler(async (req, res) => {
 }));
 
 // Update user profile
-router.put('/profile', rateLimiter, asyncHandler(async (req, res) => {
+router.put('/profile', rateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const userId = req.user!.id;
   
   // TODO: Implement update user profile logic

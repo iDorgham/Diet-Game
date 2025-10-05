@@ -3,7 +3,7 @@
  * User registration, login, and token management
  */
 
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { authRateLimiter } from '@/middleware/rateLimiter';
 import { validateRefreshToken } from '@/middleware/auth';
 import { asyncHandler } from '@/middleware/errorHandler';
@@ -33,7 +33,7 @@ const loginSchema = z.object({
 });
 
 // User registration
-router.post('/register', authRateLimiter, asyncHandler(async (req, res) => {
+router.post('/register', authRateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const userData = registerSchema.parse(req.body);
   
   // TODO: Implement user registration logic
@@ -62,7 +62,7 @@ router.post('/register', authRateLimiter, asyncHandler(async (req, res) => {
 }));
 
 // User login
-router.post('/login', authRateLimiter, asyncHandler(async (req, res) => {
+router.post('/login', authRateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const { email, password } = loginSchema.parse(req.body);
   
   // TODO: Implement user login logic
@@ -90,7 +90,7 @@ router.post('/login', authRateLimiter, asyncHandler(async (req, res) => {
 }));
 
 // Token refresh
-router.post('/refresh', authRateLimiter, validateRefreshToken, asyncHandler(async (req, res) => {
+router.post('/refresh', authRateLimiter, validateRefreshToken, asyncHandler(async (req: Request, res: Response) => {
   const userId = req.user!.id;
   
   // TODO: Implement token refresh logic
@@ -112,7 +112,7 @@ router.post('/refresh', authRateLimiter, validateRefreshToken, asyncHandler(asyn
 }));
 
 // User logout
-router.post('/logout', authRateLimiter, asyncHandler(async (req, res) => {
+router.post('/logout', authRateLimiter, asyncHandler(async (req: Request, res: Response) => {
   const { refreshToken } = req.body;
   
   // TODO: Implement logout logic

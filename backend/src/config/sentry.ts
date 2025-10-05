@@ -20,11 +20,11 @@ export const initializeSentry = (): void => {
     profilesSampleRate: config.nodeEnv === 'production' ? 0.1 : 1.0,
     integrations: [
       // Enable HTTP calls tracing
-      new Sentry.Integrations.Http({ tracing: true }),
+      Sentry.httpIntegration(),
       // Enable Express.js tracing
-      new Sentry.Integrations.Express({ app: undefined }),
+      Sentry.expressIntegration(),
     ],
-    beforeSend(event) {
+    beforeSend(event: any) {
       // Filter out certain errors in development
       if (config.nodeEnv === 'development') {
         // Don't send validation errors to Sentry in development

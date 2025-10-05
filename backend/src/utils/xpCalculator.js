@@ -6,7 +6,7 @@ import { logger } from './logger.js';
 export class XPCalculator {
   
   // Base XP values for different task types
-  static readonly BASE_XP_VALUES = {
+  static BASE_XP_VALUES = {
     MEAL_LOG: 15,
     EXERCISE_LOG: 25,
     WATER_LOG: 10,
@@ -24,7 +24,7 @@ export class XPCalculator {
   };
 
   // Difficulty multipliers
-  static readonly DIFFICULTY_MULTIPLIERS = {
+  static DIFFICULTY_MULTIPLIERS = {
     easy: 1.0,
     medium: 1.5,
     hard: 2.0,
@@ -32,7 +32,7 @@ export class XPCalculator {
   };
 
   // Streak bonus multipliers
-  static readonly STREAK_MULTIPLIERS = {
+  static STREAK_MULTIPLIERS = {
     3: 1.2,    // 20% bonus for 3-day streak
     7: 1.5,    // 50% bonus for 7-day streak
     14: 2.0,   // 100% bonus for 14-day streak
